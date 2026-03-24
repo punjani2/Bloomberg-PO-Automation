@@ -1,0 +1,330 @@
+<div class="panel w-dlg-panel-active" id="_vymfld" _cfopen="true" style="visibility: visible; display: block; width: 583px; left: 498.5px; top: 470px;">
+<div class="w-dlg-dialog" bh="DB" role="dialog" aria-labelledby="headerdialog"><div class="w-dlg-wrapper" aria-labelledby="headerdialog" role="region">
+<div class="w-dlg-inner-wrapper">
+<div class="w-dlg-header" id="headerdialog">
+Choose Value for Vendor</div>
+<div class="w-dlg-content" role="region" aria-label="table">
+<div class="flexContainer" _cid="5"><div class="rr" id="_fauvg">
+ 
+ 
+<br><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td><form _hfa="true" bh="AS" class="relocdest" id="_awe8jb" method="POST" action="/Buyer/Main/aw" name="_awe8jb"><table border="0" cellpadding="0" cellspacing="0" width="1%" class="w-arccs-table"><tbody><tr><td class="leg-p-0-5-0-0 leg-v-aln-m noWrap w-arccs-row1">
+ 
+<div class="rr" id="_yegd1" emittags="false">
+ 
+ 
+<div aria-required="false" aria-label="Search for a specific value in the list" tabindex="0" index="1" aria-expanded="false" aria-haspopup="true" aria-autocomplete="list" role="combobox" aria-describedby="text__9avtwc" bh="DDM" href="#" class="w-dropdown" id="_9avtwc" name="_9avtwc" style="min-width: 68.6719px;"><span class="w-dropdown-selected" role="textbox" id="text__9avtwc">
+Vendor</span><span class="w-dropdown-pic-ct" aria-hidden="true" data-icon=""></span><div id="Items__9avtwc" class="w-dropdown-items" role="listbox" data-dropdownid="_9avtwc" tabindex="-1" style="width: 87.6719px;">
+ 
+<div role="option" bh="DDI" id="_9avtwc0" index="0" class="w-dropdown-item" tabindex="-1">
+ID</div><div data-selected="true" role="option" bh="DDI" id="_9avtwc1" index="1" class="w-dropdown-item is-bold" tabindex="-1">
+Vendor</div></div>
+<input value="1" id="_5uziyd" type="hidden" name="_5uziyd"></div>
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){
+ariba.AWWidgets.DropDown.init(false,
+false,false,"_9avtwc");
+});</script>
+</div>
+ 
+ 
+</td><td class="leg-p-r-5 w-arccs-row2" width="1%" align="left">
+ 
+ 
+ 
+<input value="Bloomberg finance " aria-invalid="false" type="text" size="mediumSize" onblur="ariba.Handlers.hTextBlur(this, event)" id="_d30bpd" class="w-txt" bh="TF" autocorrect="off" autocapitalize="off" aria-label="Search for a specific value" _tf="AC" _pl="" name="_d30bpd"><div class="rr" id="_oeyxed"></div>
+</td><td class="w-arccs-btn" width="1%" align="left">
+ 
+<button tabindex="0" bh="TB" id="_iwhvoc" type="button" class="w-btn aw7_w-btn w-btn-small" title="Search for a specific value in the list"><span>
+ 
+Search
+ 
+</span></button>
+ 
+ 
+</td></tr></tbody></table><div class="rr" id="_ukikyc">
+<input value="_awe8jb" type="hidden" name="awsnf"><input value="_i8w3fb" type="hidden" name="awfa"><input value="true" type="hidden" name="awfid"><input value="UTF-8" type="hidden" name="awcharset">
+<input type="hidden" value="false" hiddenformvaluename="PageErrorPanelIsMinimized" name="PageErrorPanelIsMinimized">
+ 
+</div>
+</form></td></tr>
+<tr><td>&nbsp;</td></tr></tbody></table>
+<form bh="AS" class="relocdest" id="_wcaqgb" method="POST" action="/Buyer/Main/aw" name="_wcaqgb">
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<div class="noWrap scrollTableWrapper w-tbl-wrapper">
+<table class="awtWrapperTable" id="__boyw" cellpadding="0" cellspacing="0" width="100%" minheight="225">
+ 
+<tbody><tr id="_km_qkd">
+<td id="_1van_" class="tableHeader w-stw-header">
+<table cellpadding="0" cellspacing="0" width="100%"><tbody><tr>
+ 
+<td width="99%">
+<table border="0" cellspacing="0" cellpadding="0" width="100%"><tbody><tr><td width="97%"><div class="rr" id="_2pvm7b"></div></td>
+<td class="noWrap" width="1%"></td><td align="right" width="1%" class="dottedRowBottom leg-p-0-10-0-0 noWrap w-arw-tbl"></td><td align="right" width="1%" class="dottedRowBottom leg-p-0-10-0-0 noWrap w-arw-tbl"></td></tr></tbody></table>
+ 
+ 
+</td>
+ 
+</tr></tbody></table>
+ 
+ 
+</td>
+</tr>
+ 
+ 
+ 
+<tr id="_kg5pib">
+<td>
+<table cellpadding="0" cellspacing="0" class="fixedTable w-tbl-fixed">
+<tbody><tr>
+<td>
+<div class="tableHead">
+<table cellspacing="0" cellpadding="0" class="leg-w-1 w-tbl-w-1" _ow="487" style="width: 100% !important;">
+ 
+ 
+<tbody><tr _awtspacer="1"><th style="padding-right: 105px;"></th><th style="padding-right: 225px;"></th><th style="padding-right: 131px;"></th><th style="padding-right: 18px;"></th><th style="padding-right: 0px;"></th></tr><tr id="_omtgj"><th align="left" class="tableHead w-tbl-hd">
+<a id="_xphjlb" href="#" bh="HL" _sf="true" class="is-active">
+ID
+&nbsp;<span title="Click to reverse the sorting order for this column" data-icon="" class="w-tbl-sort-icon"></span></a>
+</th>
+<th align="left" class="tableHead w-tbl-hd">
+<a id="_xcnxyb" href="#" bh="HL" _sf="true" class="">
+Vendor
+</a>
+</th>
+ 
+<th align="left" class="tableHead w-tbl-hd">
+&nbsp;
+</th>
+ 
+<th align="left" class="tableHead w-tbl-hd">
+&nbsp;
+</th>
+<th class="tableHead w-tbl-hd w-tbl-hd thSpacer" rowspan="1"></th></tr>
+ 
+ 
+</tbody></table>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="tableBody" _tbid="_12uh_d" style="height: 69px;">
+<table class="tableBody" id="_12uh_d" cellspacing="0" cellpadding="0" style="width: 100% !important;">
+ 
+ 
+ 
+ 
+ 
+<tbody><tr class="AWTColAlignRow"><td width="" style="padding-right: 45px;"></td><td width="" style="padding-right: 55px;"></td><td width="" style="padding-right: 18px;"></td><td width="" style="padding-right: 18px;"></td><td class="spacer"></td></tr><tr class=" firstRow tableRow1" id="_yg6ald" dr="1" _awtisprimaryrow="1">
+<td align="left" class="tableBody w-tbl-cell">
+<span>
+ 
+ 
+<table role="presentation" class="mls" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td class="" id="_etipdc" tabindex="0">(No Preference)
+ 
+</td>
+</tr>
+</tbody></table>
+ 
+ 
+</span>
+</td><td align="left" class="tableBody w-tbl-cell">
+<span>
+ 
+ 
+<table role="presentation" class="mls" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td class="" id="_umpoqd" tabindex="0">
+ 
+</td>
+</tr>
+</tbody></table>
+ 
+ 
+</span>&nbsp;
+</td><td class="tableBody w-tbl-cell">
+ 
+ 
+<table width="1%" class="leg-flt-r a-arw-table-buttons"><tbody><tr><td class="leg-p-t-4 noWrap">
+ 
+ 
+ 
+<button tabindex="0" bh="TB" id="_c5amv" type="button" class="w-btn aw7_w-btn w-btn-small" title="Select this value for the field"><span>
+ 
+Select
+ 
+</span></button>
+ 
+ 
+ 
+ 
+</td>
+</tr></tbody></table>
+</td>
+<td class="tableBody w-tbl-cell">
+&nbsp;</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+<tr class=" tableRow1" id="_xqbxo" dr="1" _awtisprimaryrow="1">
+<td align="left" class="tableBody w-tbl-cell">
+<span>
+ 
+ 
+<table role="presentation" class="mls" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td class="" id="_macavb" tabindex="0">0002190112
+ 
+</td>
+</tr>
+</tbody></table>
+ 
+ 
+</span>
+</td><td align="left" class="tableBody w-tbl-cell">
+<span>
+ 
+ 
+<table role="presentation" class="mls" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td class="" id="_wrx9y" tabindex="0">2190112 BLOOMBERG FINANCE L P
+ 
+</td>
+</tr>
+</tbody></table>
+ 
+ 
+</span>
+</td><td class="tableBody w-tbl-cell">
+ 
+ 
+<table width="1%" class="leg-flt-r a-arw-table-buttons"><tbody><tr><td class="leg-p-t-4 noWrap">
+ 
+ 
+ 
+<button tabindex="0" bh="TB" id="_plqavc" type="button" class="w-btn aw7_w-btn w-btn-small" title="Select this value for the field"><span>
+ 
+Select
+ 
+</span></button>
+ 
+ 
+ 
+ 
+</td>
+</tr></tbody></table>
+</td>
+<td class="tableBody w-tbl-cell">
+&nbsp;</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){
+ariba.Datatable.registerScrollTable("_12uh_d",  false,
+true, false,"_1van_");
+});</script></tbody></table></div></td>
+</tr>
+</tbody></table>
+ 
+<div class="is-dnone" id="_ltr$zd">
+ 
+ 
+ 
+ 
+ 
+<input value="false" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_nndcdc" class="w-txt w-txt-dsize" bh="TF" awautoselect="0" autocorrect="off" autocapitalize="off" _pl="" name="_ehyen"><div class="rr" id="_tqmvgc"></div>
+ 
+ 
+ 
+ 
+<input value="0" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_i28fgd" class="w-txt w-txt-dsize" bh="TF" awautoselect="0" autocorrect="off" autocapitalize="off" _pl="" name="_mfhfq"><div class="rr" id="_qyvgb"></div>
+ 
+ 
+ 
+ 
+<input value="0" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_l5puld" class="w-txt w-txt-dsize" bh="TF" awautoselect="0" autocorrect="off" autocapitalize="off" _pl="" name="_4kaisc"><div class="rr" id="_3r46pd"></div>
+ 
+ 
+ 
+ 
+<input value="0" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_gao$_b" class="w-txt w-txt-dsize" bh="TF" awautoselect="0" autocorrect="off" autocapitalize="off" _pl="" name="_wahhq"><div class="rr" id="_zuix7d"></div>
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){
+ariba.Datatable.updateScrollTable("_12uh_d", false, "_nndcdc" ,
+"0", "0", "_i28fgd", "_gao$_b", "_l5puld", "_be_bvb",
+"", "_abnd2b", 2);
+});</script>
+</div></td>
+</tr>
+ 
+</tbody></table></div><div class="awtstrut" style="width: 480px;"></div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<div class="a-vert-space-30"></div>
+<div class="rr" id="_ljvc7">
+<input value="_wcaqgb" type="hidden" name="awsnf"><input value="_yb$yb" type="hidden" name="awfa"><input value="true" type="hidden" name="awfid"><input value="UTF-8" type="hidden" name="awcharset">
+<input type="hidden" value="false" hiddenformvaluename="PageErrorPanelIsMinimized" name="PageErrorPanelIsMinimized">
+ 
+</div>
+</form>
+ 
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){ariba.Input.allowSelectFirstText();
+});</script></div></div></div>
+<div class="w-dlg-buttons" role="region" aria-label="button">
+ 
+ 
+ 
+ 
+<button tabindex="0" _sf="false" bh="TB" id="_n0g55c" _isdef="true" _isdefesc="true" type="button" class="w-btn w-btn-primary aw7_w-btn-primary" title="Done Button"><span>
+Done
+</span></button>
+ 
+ 
+ 
+ 
+</div>
+ 
+</div>
+</div></div></div>
+ 
