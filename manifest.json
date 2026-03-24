@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Bloomberg Monthly Form Filler",
+  "version": "1.0.0",
+  "description": "Fills the monthly Bloomberg non-catalog item form.",
+  "permissions": ["activeTab"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
