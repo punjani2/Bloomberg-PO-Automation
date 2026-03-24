@@ -138,6 +138,119 @@ async function selectChooserExact(label, searchText, exactOptionText) {
   await sleep(1000);
 }
 
+function isElementVisible(el) {
+  if (!el) return false;
+  const style = window.getComputedStyle(el);
+  if (style.display === "none" || style.visibility === "hidden" || style.opacity === "0") {
+    return false;
+  }
+  const rect = el.getBoundingClientRect();
+  return rect.width > 0 && rect.height > 0;
+}
+
+function getContactRowSelectedText() {
+  const contactRow = findRowByLabel("Contact:");
+  if (!contactRow) return "";
+
+  const valueEl = contactRow.querySelector("input.w-chInput, input[type='text'], a");
+  if (!valueEl) return normalizeText(contactRow.textContent);
+
+  const raw = valueEl.tagName === "INPUT" ? valueEl.value : valueEl.textContent;
+  return normalizeText(raw);
+}
+
+function getChooserRowValueText(label) {
+  const row = findRowByLabel(label);
+  if (!row) return "";
+
+  const valueEl = row.querySelector("input.w-chInput, input[type='text'], a");
+  if (!valueEl) return normalizeText(row.textContent);
+
+  const raw = valueEl.tagName === "INPUT" ? valueEl.value : valueEl.textContent;
+  return normalizeText(raw);
+}
+
+async function selectVendorViaSearchMore() {
+  logStep("Selecting Vendor via Search More popup");
+
+  const vendorRow = findRowByLabel("Vendor:");
+  if (!vendorRow) {
+    throw new Error("Row not found for Vendor:");
+  }
+
+  const vendorInput = vendorRow.querySelector("input.w-chInput");
+  if (!vendorInput) throw new Error("Vendor chooser input not found");
+
+  setInputValue(vendorInput, "Bloomberg Finance");
+  vendorInput.dispatchEvent(new Event("blur", { bubbles: true }));
+  await sleep(400);
+
+  const searchMoreControl = Array.from(vendorRow.querySelectorAll("button, a, [role='button'], span")).find(
+    el => normalizeText(el.textContent).includes("search more")
+  );
+
+  if (!searchMoreControl) {
+    throw new Error('Vendor "Search More" control not found');
+  }
+
+  searchMoreControl.click();
+
+  const popup = await waitFor(() => {
+    const dialogs = Array.from(document.querySelectorAll("[role='dialog'], .w-window, .w-dlg"));
+    return dialogs.find(el => isElementVisible(el) && normalizeText(el.textContent).includes("choose value for vendor"));
+  }, 7000, 200);
+
+  if (!popup) {
+    throw new Error('Vendor popup "Choose Value for Vendor" did not appear');
+  }
+
+  const popupSearch = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
+    el => normalizeText(el.textContent) === "search"
+  );
+  if (popupSearch) {
+    popupSearch.click();
+    await sleep(700);
+  }
+
+  const targetId = normalizeText("0002190112");
+  const targetName = normalizeText("BLOOMBERG FINANCE L P");
+
+  const vendorResultRow = await waitFor(() => {
+    const rows = Array.from(popup.querySelectorAll("tr, [role='row'], .w-tbl-row"));
+    return rows.find(row => {
+      const text = normalizeText(row.textContent);
+      return text.includes(targetId) && text.includes(targetName);
+    });
+  }, 8000, 200);
+
+  if (!vendorResultRow) {
+    throw new Error("Vendor row 0002190112 BLOOMBERG FINANCE L P not found in popup");
+  }
+
+  const rowSelect = Array.from(vendorResultRow.querySelectorAll("button, a, [role='button']")).find(
+    el => normalizeText(el.textContent) === "select"
+  );
+  if (!rowSelect) {
+    throw new Error('Vendor row "Select" button not found');
+  }
+
+  rowSelect.click();
+  await sleep(700);
+
+  const doneBtn = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
+    el => normalizeText(el.textContent) === "done"
+  );
+  if (doneBtn && isElementVisible(doneBtn)) {
+    doneBtn.click();
+    await sleep(600);
+  }
+
+  const selectedVendor = getChooserRowValueText("Vendor:");
+  if (!selectedVendor.includes(targetId) || !selectedVendor.includes(targetName)) {
+    throw new Error("Vendor did not populate with 0002190112 BLOOMBERG FINANCE L P");
+  }
+}
+
 async function openAccountTypeDropdown() {
   const row = findRowByLabel("Account Type:");
   if (!row) throw new Error("Row not found for Account Type:");
@@ -177,7 +290,7 @@ async function selectAccountTypeWbs() {
     );
 
     return options.length > 1 ? { combo, itemsContainer } : null;
-  }, 12000, 500);
+  }, 20000, 500);
 
   if (!ready) {
     throw new Error("Account Type options did not populate");
@@ -249,20 +362,7 @@ async function fillBloombergForm() {
     results.push(`Full Description failed: ${e.message}`);
   }
 
-  // Vendor first
-  try {
-    await selectChooserExact(
-      "Vendor:",
-      "bloomberg finance",
-      "0002190112 (2190112 BLOOMBERG FINANCE L P)"
-    );
-    results.push("Vendor");
-  } catch (e) {
-    results.push(`Vendor failed: ${e.message}`);
-    return results;
-  }
-
-  // Commodity next
+  // Commodity early
   try {
     await selectChooserExact(
       "Commodity Code:",
@@ -276,13 +376,6 @@ async function fillBloombergForm() {
   }
 
   try {
-    await selectAccountTypeWbs();
-    results.push("Account Type");
-  } catch (e) {
-    results.push(`Account Type failed: ${e.message}`);
-  }
-
-  try {
     await setPlainField("Quantity:", "1");
     results.push("Quantity");
   } catch (e) {
@@ -290,17 +383,26 @@ async function fillBloombergForm() {
   }
 
   try {
-    await selectChooserExact("Unit of Measure:", "each", "each");
-    results.push("Unit of Measure");
-  } catch (e) {
-    results.push(`Unit of Measure failed: ${e.message}`);
-  }
-
-  try {
     await setPlainField("Price:", "2035.98");
     results.push("Price");
   } catch (e) {
     results.push(`Price failed: ${e.message}`);
+  }
+
+  // Vendor via Search More popup
+  try {
+    await selectVendorViaSearchMore();
+    results.push("Vendor");
+  } catch (e) {
+    results.push(`Vendor failed: ${e.message}`);
+    return results;
+  }
+
+  try {
+    await selectAccountTypeWbs();
+    results.push("Account Type");
+  } catch (e) {
+    results.push(`Account Type failed: ${e.message}`);
   }
 
   try {
