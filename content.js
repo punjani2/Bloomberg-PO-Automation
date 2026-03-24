@@ -148,71 +148,116 @@ function isElementVisible(el) {
   return rect.width > 0 && rect.height > 0;
 }
 
-async function selectContactViaSelectButtons() {
+function getContactRowSelectedText() {
+  const contactRow = findRowByLabel("Contact:");
+  if (!contactRow) return "";
+
+  const valueEl = contactRow.querySelector("input.w-chInput, input[type='text'], a");
+  if (!valueEl) return normalizeText(contactRow.textContent);
+
+  const raw = valueEl.tagName === "INPUT" ? valueEl.value : valueEl.textContent;
+  return normalizeText(raw);
+}
+
+async function selectContactViaPopupExact(contactId, contactName) {
   const contactRow = findRowByLabel("Contact:");
   if (!contactRow) {
     throw new Error("Row not found for Contact:");
   }
 
-  const rowSelectButton = Array.from(contactRow.querySelectorAll("button, a, [role='button']")).find(
+  const openSelect = Array.from(contactRow.querySelectorAll("button, a, [role='button']")).find(
     el => normalizeText(el.textContent) === "select"
   );
 
-  if (!rowSelectButton) {
+  if (!openSelect) {
     throw new Error('No "Select" button found in Contact row');
   }
 
-  // Some flows require opening Contact chooser and then confirming with Select.
-  for (let i = 0; i < 2; i++) {
-    rowSelectButton.click();
-    await sleep(700);
+  openSelect.click();
 
-    const confirmSelect = await waitFor(() => {
-      const candidates = Array.from(document.querySelectorAll("button, a, [role='button']"));
-      return candidates.find(el => {
-        const text = normalizeText(el.textContent);
-        const isInContactRow = contactRow.contains(el);
-        return text === "select" && !isInContactRow && isElementVisible(el);
-      });
-    }, 4000, 200);
+  const popup = await waitFor(() => {
+    const dialogs = Array.from(document.querySelectorAll("[role='dialog'], .w-window, .w-dlg"));
+    return dialogs.find(el => isElementVisible(el) && normalizeText(el.textContent).includes("choose value for contact"));
+  }, 6000, 200);
 
-    if (!confirmSelect) {
-      // If no secondary Select appears, first click may already complete the selection.
-      break;
-    }
+  if (!popup) {
+    throw new Error('Contact popup "Choose Value for Contact" did not appear');
+  }
 
-    // If there is a result grid/list, pick the first selectable row before confirming.
-    const firstResult = Array.from(
-      document.querySelectorAll("[role='row'], .w-tbl-row, .w-pmi-item, li")
-    ).find(el => {
-      if (!isElementVisible(el)) return false;
-      const text = normalizeText(el.textContent);
-      return text && !text.includes("search more") && text !== "select";
+  const targetId = normalizeText(contactId);
+  const targetName = normalizeText(contactName);
+
+  let resultRow = await waitFor(() => {
+    const rows = Array.from(popup.querySelectorAll("tr, [role='row'], .w-tbl-row"));
+    return rows.find(row => {
+      const text = normalizeText(row.textContent);
+      return text.includes(targetId) && text.includes(targetName);
     });
+  }, 5000, 200);
 
-    if (firstResult) {
-      firstResult.click();
-      await sleep(200);
+  if (!resultRow) {
+    const searchBtn = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
+      el => normalizeText(el.textContent) === "search"
+    );
+    if (searchBtn) {
+      searchBtn.click();
+      await sleep(700);
     }
 
-    confirmSelect.click();
-    await sleep(900);
+    resultRow = await waitFor(() => {
+      const rows = Array.from(popup.querySelectorAll("tr, [role='row'], .w-tbl-row"));
+      return rows.find(row => {
+        const text = normalizeText(row.textContent);
+        return text.includes(targetId) && text.includes(targetName);
+      });
+    }, 6000, 200);
+  }
+
+  if (!resultRow) {
+    throw new Error(`Contact row not found in popup for ${contactId} ${contactName}`);
+  }
+
+  const selectInRow = Array.from(resultRow.querySelectorAll("button, a, [role='button']")).find(
+    el => normalizeText(el.textContent) === "select"
+  );
+
+  if (selectInRow) {
+    selectInRow.click();
+  } else {
+    resultRow.click();
+    await sleep(200);
+    const popupSelect = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
+      el => normalizeText(el.textContent) === "select"
+    );
+    if (!popupSelect) {
+      throw new Error('Popup Select button not found for Contact');
+    }
+    popupSelect.click();
+  }
+
+  await sleep(800);
+
+  const doneBtn = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
+    el => normalizeText(el.textContent) === "done"
+  );
+  if (doneBtn && isElementVisible(doneBtn)) {
+    doneBtn.click();
+    await sleep(600);
   }
 }
 
 async function selectContactForVendor() {
   logStep("Selecting Contact for Vendor");
 
-  const expectedContact = "0002190112 (2190112 BLOOMBERG FINANCE L P)";
+  const contactId = "0002190112";
+  const contactName = "BLOOMBERG FINANCE L P";
 
-  try {
-    await selectChooserExact("Contact:", "2190112", expectedContact);
-    return;
-  } catch (chooserErr) {
-    logStep(`Contact chooser selection fallback: ${chooserErr.message}`);
+  await selectContactViaPopupExact(contactId, contactName);
+
+  const selectedText = getContactRowSelectedText();
+  if (!selectedText.includes(normalizeText(contactId)) || !selectedText.includes(normalizeText(contactName))) {
+    throw new Error("Contact did not populate with 0002190112 BLOOMBERG FINANCE L P");
   }
-
-  await selectContactViaSelectButtons();
 }
 
 async function openAccountTypeDropdown() {
