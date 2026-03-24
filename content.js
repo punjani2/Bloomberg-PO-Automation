@@ -159,83 +159,83 @@ function getContactRowSelectedText() {
   return normalizeText(raw);
 }
 
-function getChooserRowValueText(label) {
-  const row = findRowByLabel(label);
-  if (!row) return "";
-
-  const valueEl = row.querySelector("input.w-chInput, input[type='text'], a");
-  if (!valueEl) return normalizeText(row.textContent);
-
-  const raw = valueEl.tagName === "INPUT" ? valueEl.value : valueEl.textContent;
-  return normalizeText(raw);
-}
-
-async function selectVendorViaSearchMore() {
-  logStep("Selecting Vendor via Search More popup");
-
-  const vendorRow = findRowByLabel("Vendor:");
-  if (!vendorRow) {
-    throw new Error("Row not found for Vendor:");
+async function selectContactViaPopupExact(contactId, contactName) {
+  const contactRow = findRowByLabel("Contact:");
+  if (!contactRow) {
+    throw new Error("Row not found for Contact:");
   }
 
-  const vendorInput = vendorRow.querySelector("input.w-chInput");
-  if (!vendorInput) throw new Error("Vendor chooser input not found");
-
-  setInputValue(vendorInput, "Bloomberg Finance");
-  vendorInput.dispatchEvent(new Event("blur", { bubbles: true }));
-  await sleep(400);
-
-  const searchMoreControl = Array.from(vendorRow.querySelectorAll("button, a, [role='button'], span")).find(
-    el => normalizeText(el.textContent).includes("search more")
+  const openSelect = Array.from(contactRow.querySelectorAll("button, a, [role='button']")).find(
+    el => normalizeText(el.textContent) === "select"
   );
 
-  if (!searchMoreControl) {
-    throw new Error('Vendor "Search More" control not found');
+  if (!openSelect) {
+    throw new Error('No "Select" button found in Contact row');
   }
 
-  searchMoreControl.click();
+  openSelect.click();
 
   const popup = await waitFor(() => {
     const dialogs = Array.from(document.querySelectorAll("[role='dialog'], .w-window, .w-dlg"));
-    return dialogs.find(el => isElementVisible(el) && normalizeText(el.textContent).includes("choose value for vendor"));
-  }, 7000, 200);
+    return dialogs.find(el => isElementVisible(el) && normalizeText(el.textContent).includes("choose value for contact"));
+  }, 6000, 200);
 
   if (!popup) {
-    throw new Error('Vendor popup "Choose Value for Vendor" did not appear');
+    throw new Error('Contact popup "Choose Value for Contact" did not appear');
   }
 
-  const popupSearch = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
-    el => normalizeText(el.textContent) === "search"
-  );
-  if (popupSearch) {
-    popupSearch.click();
-    await sleep(700);
-  }
+  const targetId = normalizeText(contactId);
+  const targetName = normalizeText(contactName);
 
-  const targetId = normalizeText("0002190112");
-  const targetName = normalizeText("BLOOMBERG FINANCE L P");
-
-  const vendorResultRow = await waitFor(() => {
+  let resultRow = await waitFor(() => {
     const rows = Array.from(popup.querySelectorAll("tr, [role='row'], .w-tbl-row"));
     return rows.find(row => {
       const text = normalizeText(row.textContent);
       return text.includes(targetId) && text.includes(targetName);
     });
-  }, 8000, 200);
+  }, 5000, 200);
 
-  if (!vendorResultRow) {
-    throw new Error("Vendor row 0002190112 BLOOMBERG FINANCE L P not found in popup");
+  if (!resultRow) {
+    const searchBtn = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
+      el => normalizeText(el.textContent) === "search"
+    );
+    if (searchBtn) {
+      searchBtn.click();
+      await sleep(700);
+    }
+
+    resultRow = await waitFor(() => {
+      const rows = Array.from(popup.querySelectorAll("tr, [role='row'], .w-tbl-row"));
+      return rows.find(row => {
+        const text = normalizeText(row.textContent);
+        return text.includes(targetId) && text.includes(targetName);
+      });
+    }, 6000, 200);
   }
 
-  const rowSelect = Array.from(vendorResultRow.querySelectorAll("button, a, [role='button']")).find(
+  if (!resultRow) {
+    throw new Error(`Contact row not found in popup for ${contactId} ${contactName}`);
+  }
+
+  const selectInRow = Array.from(resultRow.querySelectorAll("button, a, [role='button']")).find(
     el => normalizeText(el.textContent) === "select"
   );
-  if (!rowSelect) {
-    throw new Error('Vendor row "Select" button not found');
+
+  if (selectInRow) {
+    selectInRow.click();
+  } else {
+    resultRow.click();
+    await sleep(200);
+    const popupSelect = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
+      el => normalizeText(el.textContent) === "select"
+    );
+    if (!popupSelect) {
+      throw new Error('Popup Select button not found for Contact');
+    }
+    popupSelect.click();
   }
 
-  rowSelect.click();
-  await sleep(700);
+  await sleep(800);
 
   const doneBtn = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
     el => normalizeText(el.textContent) === "done"
@@ -244,10 +244,19 @@ async function selectVendorViaSearchMore() {
     doneBtn.click();
     await sleep(600);
   }
+}
 
-  const selectedVendor = getChooserRowValueText("Vendor:");
-  if (!selectedVendor.includes(targetId) || !selectedVendor.includes(targetName)) {
-    throw new Error("Vendor did not populate with 0002190112 BLOOMBERG FINANCE L P");
+async function selectContactForVendor() {
+  logStep("Selecting Contact for Vendor");
+
+  const contactId = "0002190112";
+  const contactName = "BLOOMBERG FINANCE L P";
+
+  await selectContactViaPopupExact(contactId, contactName);
+
+  const selectedText = getContactRowSelectedText();
+  if (!selectedText.includes(normalizeText(contactId)) || !selectedText.includes(normalizeText(contactName))) {
+    throw new Error("Contact did not populate with 0002190112 BLOOMBERG FINANCE L P");
   }
 }
 
@@ -362,7 +371,28 @@ async function fillBloombergForm() {
     results.push(`Full Description failed: ${e.message}`);
   }
 
-  // Commodity early
+  // Vendor first
+  try {
+    await selectChooserExact(
+      "Vendor:",
+      "bloomberg finance",
+      "0002190112 (2190112 BLOOMBERG FINANCE L P)"
+    );
+    results.push("Vendor");
+  } catch (e) {
+    results.push(`Vendor failed: ${e.message}`);
+    return results;
+  }
+
+  try {
+    await selectContactForVendor();
+    results.push("Contact");
+  } catch (e) {
+    results.push(`Contact failed: ${e.message}`);
+    return results;
+  }
+
+  // Commodity next
   try {
     await selectChooserExact(
       "Commodity Code:",
@@ -376,6 +406,13 @@ async function fillBloombergForm() {
   }
 
   try {
+    await selectAccountTypeWbs();
+    results.push("Account Type");
+  } catch (e) {
+    results.push(`Account Type failed: ${e.message}`);
+  }
+
+  try {
     await setPlainField("Quantity:", "1");
     results.push("Quantity");
   } catch (e) {
@@ -383,26 +420,17 @@ async function fillBloombergForm() {
   }
 
   try {
+    await selectChooserExact("Unit of Measure:", "each", "each");
+    results.push("Unit of Measure");
+  } catch (e) {
+    results.push(`Unit of Measure failed: ${e.message}`);
+  }
+
+  try {
     await setPlainField("Price:", "2035.98");
     results.push("Price");
   } catch (e) {
     results.push(`Price failed: ${e.message}`);
-  }
-
-  // Vendor via Search More popup
-  try {
-    await selectVendorViaSearchMore();
-    results.push("Vendor");
-  } catch (e) {
-    results.push(`Vendor failed: ${e.message}`);
-    return results;
-  }
-
-  try {
-    await selectAccountTypeWbs();
-    results.push("Account Type");
-  } catch (e) {
-    results.push(`Account Type failed: ${e.message}`);
   }
 
   try {

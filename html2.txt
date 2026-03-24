@@ -1,0 +1,1666 @@
+<tr>
+<td style="width: 100%" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" role="main" aria-label="Main Application">
+ 
+ 
+ 
+ 
+ 
+ 
+<tbody><tr id="commandBarTop">
+<td class="cmdBar aw7_cmdBar" name="mastHeadCmdBarClass">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+ 
+<tbody><tr class="aw7_shell-bar-content" role="banner" aria-label="Top Command Bar">
+<td colspan="4">
+<div class="aw7_shell-bar-wrapper">
+ 
+ 
+ 
+<div class="aw7_back-page-wrapper">
+ 
+ 
+<div class="w-back-page-cell aw7_w-back-page-cell aw7_w-back-page-nav-div" width="1%">
+ 
+<a title="Go To Dashboard" id="_88tz2d" href="#" bh="HL" _sf="true" class="aw7_back-action">
+<div class="w-back-page-nav aw7_w-back-page-nav" data-icon="" aria-hidden="true"></div>
+</a>
+ 
+</div>
+<div class="w-back-page-cell aw7_w-back-page-cell aw7_w-back-page-logo" width="1%">
+ 
+<div class="rr" id="_4yqxvb"><a id="_blvtmd" href="#" bh="HL" _sf="true" class="leg-txt-dec-none">
+ 
+<img alt="Company Logo" title="Company Logo" border="0" height="30" src="https://s1.ariba.com/Buyer/Main/ad/awres/cbi-child2/CBILogo/182/cmdbar_prod_light.png" class="a-cmdbar-prod-logo aw7_a-cmdbar-prod-logo">
+ 
+</a></div>
+ 
+</div>
+ 
+ 
+ 
+</div>
+ 
+<div class="w-cmd-wrapper aw7_w-cmd-wrapper" width="99%">
+<span id="cmdlinks" class="aw7_cmd-links">
+<span class="w-header-search-link aw7_w-header-search-link">
+ 
+ 
+<a href="#" aria-label="Search" title="Search" role="button" class="mastCmd" _mid="Search" bh="PMLF" id="_9ydd$b" aria-haspopup="menu"><span title="Search"></span>
+<div class="a-srch-action-icon" aria-hidden="true" data-icon=""></div></a>
+<div class="awmenu w-pm-menu is-dnone" id="Search" _reloc="1">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+<a role="menuitem" id="_p9c5cb" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Advance Payment</a>
+<a role="menuitem" id="_cor$kb" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Analytical Report</a>
+<a role="menuitem" id="_ygmw" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Any Document</a>
+<a role="menuitem" id="_fobkmc" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Catalog</a>
+<a role="menuitem" id="_bm7oab" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Compound Report</a>
+<a role="menuitem" id="_wzmiib" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Copy Receipt</a>
+<a role="menuitem" id="_mrrhc" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Excel Template</a>
+<a role="menuitem" id="_krtqdb" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Form</a>
+<a role="menuitem" id="_6tnarc" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Invoice</a>
+<a role="menuitem" id="_zm9jf" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Invoice Reconciliation</a>
+<a role="menuitem" id="_hodjtd" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Milestone Tracker</a>
+<a role="menuitem" id="_eqn4zd" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Order</a>
+<a role="menuitem" id="_aotsv" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+PCard Charge</a>
+<a role="menuitem" id="_j3dxbc" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Payment Transaction</a>
+<a role="menuitem" id="_919bxb" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Procurement Intake Form (FM)</a>
+<a role="menuitem" id="_67p9yd" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Procurement Intake Form (IT)</a>
+<a role="menuitem" id="_k5vx_" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Procurement Intake Form (MRO)</a>
+<a role="menuitem" id="_hmf0wc" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Procurement Intake Form (Utilities) V2</a>
+<a role="menuitem" id="_zk$e8b" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Procurement Intake Form copy</a>
+<a role="menuitem" id="_ukokwd" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Purchase Order</a>
+<a role="menuitem" id="_wiig8" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Receipt</a>
+<a role="menuitem" id="_tx4dyc" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Requisition</a>
+<a role="menuitem" id="_jffm4d" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+User Profile</a>
+<a role="menuitem" id="_pveeh" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Virtual Card Charge</a>
+<a role="menuitem" id="_na_v" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+<i>More...</i></a><a title="Show all menu items" bh="PMIO" class="awmenuCell cellO w-pmi-item" href="#" tabindex="99">
+<span aria-hidden="true" class="w-pm-more" data-icon="">
+</span>
+ 
+</a></div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('Search');
+</script>
+ 
+ 
+ 
+ 
+ 
+ 
+</span>
+ 
+ 
+<span id="alertCountLink" class="is-dnone w-header-alert-link aw7_w-header-alert-link hide">
+<div class="rr" id="aribaAlertLink_RR"><a id="_k$zhyb" href="#" bh="HL" _sf="true" class="leg-txt-dec-none">
+<span aria-hidden="true" data-icon="" title="Alert" name="Alert"></span>
+<span class="w-alert-system-count">(<span class="w-alert-count-link-number"></span>)</span></a></div></span>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<span class="w-header-print-link aw7_w-header-print-link">
+ 
+ 
+ 
+ 
+<a title="Print" role="button" id="__hf4$" href="#" bh="HL" _sf="true">
+ 
+<span class="w-print-menu-icon aw7_w-print-menu-icon" data-icon="" aria-hidden="true"></span>
+ 
+</a>
+ 
+ 
+ 
+ 
+ 
+<div class="rr" id="_dkppeb">
+ 
+ 
+<script>RJS(true, false, false, function(){var rppId = '_j3jcrc';
+});</script></div>
+ 
+ 
+</span>
+ 
+ 
+ 
+<span class="w-header-joule-link aw7_w-header-joule-link">
+</span>
+ 
+<span class="w-header-walkMe-link aw7_w-header-walkMe-link">
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){
+});</script>
+<span id="walkMe" class="w-walkMe-menu-icon" data-icon="" aria-hidden="true"></span>
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){
+document.getElementById('walkMe').addEventListener('click', function () {
+WalkMePlayerAPI.toggleMenu()
+});
+});</script>
+</span>
+ 
+<span class="w-header-help-link aw7_w-header-help-link">
+<a href="#" aria-label="Help" role="button" class="awmenuLink linkArrow" _mid="help" bh="PML" id="_a6x4qb" aria-haspopup="menu">
+<span title="Help"></span>
+<span aria-hidden="true" data-icon="" class="aw7_w-help-menu-icon" title="Help" name="Help"></span>
+</a>
+ 
+<div class="awmenu w-pm-menu is-dnone" id="help" _reloc="1">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+ 
+ 
+<a role="menuitem" id="_czcszb" _ct="javascript:ariba.Community.gotoCommunityNoContext('https://uex.ariba.com?a_usrtype=buyer&amp;a_role=user&amp;a_persona=buyer&amp;a_domn=CBI-child2PasswordAdapter1&amp;a_email=eW91cmVtYWls&amp;a_context=AribaCustomForm,AribaInvoiceSSI,AribaMobile,AribaSpotBuy,AribaP2PProfessional,Ariba SSP Reporting,Ariba Operational Service,Ariba Sourcing Pro,Ariba Contracts Pro,Ariba Supplier Lifecycle and Performance,Ariba Spend Visibility Pro,AribaMobile,suite&amp;a_lname=TGFzdE5hbWU=&amp;a_anid=Child2-AN01055567864&amp;a_soln=ssp&amp;a_lgin=true&amp;a_cname=Q29tcGFueU5hbWU=&amp;a_usrn=VSUyRjd3SDFoQzNLdDVzNEFQWlE4NmVJQzRUbnpXUDZRR1NNQWdaSyUyQiUyQkM0QSUzRA==&amp;q=external-login&amp;a_fname=Rmlyc3ROYW1l&amp;a_ph=xxx-xxx-xxxx&amp;a_enc=EncodeBase64&amp;a_lang=en_US','scrollbars=yes, status=yes, resizable=yes, location=yes, toolbar=yes, width=1140, height=675');" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+ 
+Help Center
+</a>
+ 
+ 
+ 
+ 
+<a role="menuitem" id="_z3xoeb" _t="events" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+ 
+Events
+</a>
+ 
+ 
+<a role="menuitem" id="_6brtub" _ct="ariba.Widgets.toggleAboutBox('AWContactDiv',event);ariba.Event.cancelBubble(event);" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+ 
+Contact Us
+</a>
+</div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('help');
+</script>
+ 
+ 
+</span>
+<span class="w-header-site-link aw7_w-header-site-link">
+<a href="#" class="awmenuLink linkArrow" _mid="site" bh="PML" id="_8oicdd">
+<span aria-hidden="true" data-icon="" class="aw7_w-header-site-icon" title="Site" name="Site"></span>
+</a>
+ 
+<div class="awmenu w-pm-menu is-dnone" id="site" _reloc="1">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+ 
+ 
+<a role="menuitem" id="_nbljp" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Constellation Brands, Inc.</a>
+</div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('site');
+</script>
+ 
+ 
+ 
+</span>
+ 
+<span class="w-header-username-link aw7_w-header-username-link">
+<span _v="&lt;b&gt;Your Name&lt;/b&gt; - Log out, manage your user profile, or switch the visual design theme between light and dark.&lt;br&gt;&lt;br&gt;&lt;b&gt;Help&lt;/b&gt; - Access product documentation, support, and other resources." _t="User Profile and Help" id="_fkrpeb" class="w-spotlight-span">
+ 
+ 
+ 
+<a href="#" title="Samdisha Punjani" role="button" class="awmenuLink linkArrow" _mid="Preferences" bh="PML" id="_b3ijcc" aria-haspopup="menu"><span class="aw7_user-name-initials">
+SP
+</span>
+</a>
+ 
+<div class="awmenu w-pm-menu is-dnone" id="Preferences" _reloc="1">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+ 
+<a role="menuitem" id="_hf2h2" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Sign Out
+</a>
+ 
+<div class="w-pm-head">&nbsp;Preferences
+</div>
+ 
+ 
+ 
+<ul class="nopadding-left nomargin" role="menu" aria-label="Preferences">
+ 
+<a role="menuitem" id="_gumwn" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Delegate authority</a>
+<a role="menuitem" id="_oehzhc" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Change your profile</a>
+<a role="menuitem" id="_nqskqb" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Change default locale</a>
+<a role="menuitem" id="_1s$l3b" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Change email notification preferences</a>
+<a role="menuitem" id="_qcyy8c" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Edit default preferences</a>
+<a role="menuitem" id="__w1x6" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Manage nonstandard addresses</a>
+<a role="menuitem" id="_by4axd" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Activate mobile device</a>
+<a role="menuitem" id="_ottv" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Deactivate mobile devices</a>
+<a role="menuitem" id="_rdecld" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Download procurement user info</a>
+<a role="menuitem" id="_fxznnb" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Change reporting preferences</a>
+</ul>
+ 
+ 
+ 
+ 
+ 
+ 
+<div class="w-pm-head">&nbsp;Theme
+</div>
+<ul class="nopadding-left nomargin" role="menu" aria-label="Theme">
+ 
+<a role="menuitem" id="_8iryob" bh="PMI" class="w-pmi-item w-pmi-check" aria-hidden="false" href="#" tabindex="-1">
+<span class="w-pm-icon-check" aria-hidden="true" data-icon=""></span>
+ 
+ 
+Light Theme
+</a>
+<a role="menuitem" id="_scw9ud" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+SAP Blue Theme
+</a>
+</ul>
+ 
+</div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('Preferences');
+</script>
+ 
+ 
+ 
+ 
+ 
+</span>
+</span>
+ 
+ 
+ 
+ 
+</span>
+</div>
+</div>
+</td>
+</tr>
+ 
+<tr role="banner" aria-label="Identification Bar">
+<td class="aw7_identifier-bar-content" colspan="4">
+ 
+</td>
+ 
+</tr>
+ 
+ 
+ 
+ 
+ 
+<tr>
+<td width="100%" colspan="3" class="w-navigation-bar-separator aw7_w-navigation-bar-separator">
+<table>
+<tbody><tr>
+<td width="80%" valign="bottom" class="dbTabWrapper aw7_dbTabWrapper">
+<a name="navigation"></a>
+ 
+ 
+<div class="rr" id="_3n2mpc">
+<div type="dashboardTabs" class="w-dashboard-tabs">
+<ul role="tablist" class="w-tablist">
+<span id="_w0cxnc" class=" awDrp_RegularPortlet" bh="DrP">
+ 
+<li class="w-tabitem">
+<span index="0" class="w-tabitem-a">
+<a role="tab" id="_pl0dp" href="#" aria-selected="false" bh="DHL" _sf="true">Home</a></span>
+ 
+</li>
+</span>
+<span id="_1rs0p" class=" awDrp_RegularPortlet" bh="DrP">
+ 
+<li class="w-tabitem">
+<span index="1" class="w-tabitem-a">
+<a role="tab" id="_by$xm" href="#" aria-selected="false" bh="DHL" _sf="true">Procurement</a></span>
+ 
+</li>
+</span>
+<span id="_rpmeld" class=" awDrp_RegularPortlet" bh="DrP">
+ 
+<li class="w-tabitem">
+<span index="2" class="w-tabitem-a">
+<a role="tab" id="_ke2ric" href="#" aria-selected="false" bh="DHL" _sf="true">Invoicing</a></span>
+ 
+</li>
+</span>
+<span id="_yncvvd" class=" awDrp_RegularPortlet" bh="DrP">
+ 
+<li class="w-tabitem w-tabitem-selected">
+ 
+<span index="3" class="w-tabitem-a w-tabitem-a-slctd">
+<a role="tab" id="_btplac" href="#" aria-selected="true" bh="DHL" _sf="true" accesskey="n">Catalog <span class="empty_cat_home_bg">0</span></a></span>
+ 
+</li>
+ 
+</span>
+ 
+</ul>
+</div>
+ 
+</div>
+ 
+</td>
+<td width="1%"></td>
+<td width="19%" valign="middle" align="right" class="dbTabWrapper aw7_dbTabWrapper">
+ 
+ 
+<div _v="&lt;b&gt;Create&lt;/b&gt; - Perform most common tasks: creating requisitions, invoices, contracts, events, reports, and so forth.&lt;br&gt;&lt;br&gt;&lt;b&gt;Manage&lt;/b&gt; - Access your tasks, approvals, prepackaged reports, and perform administrative tasks.&lt;br&gt;&lt;br&gt;&lt;b&gt;Recent&lt;/b&gt; - See all of the items you viewed recently." _t="Common Actions" id="_lhbam">
+ 
+<table class="a-nav-bar-cmds noWrap aw7_a-nav-bar-cmds">
+<tbody><tr>
+ 
+ 
+<td class="taR noWrap a-nav-bar-recent aw7_a-nav-bar-recent">
+ 
+ 
+<a href="#" role="button" class="" _mid="RecentlyViewed" bh="PMLF" id="_$zcs8c" tabindex="0" aria-haspopup="menu">Recent
+<span class="w-pml-icon aw7_w-pml-icon" data-icon="" aria-hidden="true"></span></a>
+ 
+ 
+<div class="awmenu w-pm-menu is-dnone" id="RecentlyViewed" _reloc="1" role="menu">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+<a title="PR448822 " role="menuitem" id="_1jbo3b" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+PR448822 </a>
+<a title="PR447808 Bloomberg Access - February 2026" role="menuitem" id="_wwrt5d" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+PR447808 Bloomberg Access - February 2026</a>
+</div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('RecentlyViewed');
+</script>
+ 
+ 
+ 
+ 
+ 
+</td>
+ 
+<td class="taR noWrap a-nav-bar-manage aw7_a-nav-bar-manage">
+ 
+ 
+<a href="#" role="button" class="" _mid="Manage" bh="PMLF" id="_l8mzod" aria-haspopup="menu">Manage
+<span class="w-pml-icon aw7_w-pml-icon" data-icon="" aria-hidden="true"></span></a>
+<div class="awmenu w-pm-menu is-dnone" id="Manage" _reloc="1">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+ 
+ 
+ 
+<a title="My To Do" role="menuitem" id="_ec7awd" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+My To Do</a>
+<a title="Prepackaged Reports" role="menuitem" id="_9dl5yb" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Prepackaged Reports</a>
+<a title="Public Reports" role="menuitem" id="_jfrtuc" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Public Reports</a>
+<a title="Purchase Orders" role="menuitem" id="_677iec" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Purchase Orders</a>
+<a title="Receive" role="menuitem" id="_k5bisb" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Receive</a>
+<a title="Reconcile Invoice" role="menuitem" id="_hmrrcd" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Reconcile Invoice</a>
+<a title="Report Search Filters" role="menuitem" id="_zklbq" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Report Search Filters</a>
+ 
+</div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('Manage');
+</script>
+ 
+ 
+ 
+ 
+</td>
+<td class="taR noWrap a-nav-bar-create aw7_a-nav-bar-create">
+ 
+ 
+<a href="#" role="button" class="" _mid="Create" bh="PMLF" id="_xd5prd" tabindex="0" aria-haspopup="menu"><div class="a-mastCmd-create-button aw7_a-mastCmd-create-button">
+<span class="a-srch-bar-create">
+Create</span>
+<span class="a-mastCmd-create-button-aux-icon aw7_a-mastCmd-create-button-aux-icon" aria-hidden="true" data-icon=""></span>
+</div>
+</a>
+ 
+ 
+<div class="awmenu w-pm-menu is-dnone" id="Create" _reloc="1" role="menu">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+ 
+<a title="Payment Request Form  (On Behalf Of) V3" role="menuitem" id="_nn3sad" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Payment Request Form  (On Behalf Of) V3</a>
+<a title="Payment Request Form V4" role="menuitem" id="_e4hpob" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Payment Request Form V4</a>
+<a title="Procurement Intake Form" role="menuitem" id="_0wgae" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Procurement Intake Form</a>
+<a title="Procurement Intake Form (FM)" role="menuitem" id="_de3uic" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Procurement Intake Form (FM)</a>
+<a title="Procurement Intake Form (IT) V2" role="menuitem" id="_zwqbcd" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Procurement Intake Form (IT) V2</a>
+<a title="Procurement Intake Form (MRO)" role="menuitem" id="__dndkd" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Procurement Intake Form (MRO)</a>
+<a title="Procurement Intake Form (MROServ)" role="menuitem" id="_gbh3g" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Procurement Intake Form (MROServ)</a>
+<a title="Procurement Intake Form (Obsoleto)" role="menuitem" id="_ibbazb" bh="PMI" class="w-pmi-item cellColl" aria-hidden="false" href="#" tabindex="-1">
+ 
+Procurement Intake Form (Obsoleto)</a>
+<a title="Procurement Intake Form (UTILITIES)" role="menuitem" id="_sjmvt" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Procurement Intake Form (UTILITIES)</a>
+<a title="Requisition" role="menuitem" id="_xww2dc" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+Requisition</a>
+<a title="Show all menu items" bh="PMIO" class="awmenuCell cellO w-pmi-item" href="#" tabindex="99">
+<span aria-hidden="true" class="w-pm-more" data-icon="">
+</span>
+ 
+</a></div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('Create');
+</script>
+ 
+ 
+ 
+ 
+ 
+</td>
+ 
+</tr>
+</tbody></table>
+ 
+</div>
+ 
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+ 
+</tbody></table>
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+ 
+ 
+ 
+ 
+ 
+ 
+<td aria-label="Page Content" role="region" class="w-page-wrapper-content vaT" id="contentAlley"><div class="flexContainer">
+<a name="content"></a><div class="rr" id="_vmzyid">
+ 
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){
+ariba.Widgets.updateDialogWrapperClass(false);
+});</script>
+ 
+<table cellpadding="0" cellspacing="0" border="0" class="w-wizard-layout-container">
+<tbody><tr>
+ 
+<td class="w-wizard-layout-top-right" width="99%">
+ 
+ 
+ 
+<div class="_community_context" style="display: none;">domainObject:Requisitions,activity:Create,activity:Change,misc:Accounting,misc:ShipToAddress,misc:ApprovalFlow,misc:ApprovableActions,misc:CollaborationRequest</div>
+ 
+ 
+ 
+<table id="catContentId" width="100%" cellspacing="0" cellpadding="0" border="0" class="  : a-narw-wizard-title-summary-space"><tbody><tr>
+<td class="leg-font-size-20 leg-clr-666 leg-font-wght-n a-non-cat-itm-hdg">
+Create Non-Catalog Item
+ 
+</td>
+ 
+<td class="noWrap leg-brdr-radius-5 leg-p-10-10-10-5 leg-bgc-f3f3f3 a-non-cat-itm-act-btn" width="1%"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="a-non-cat-itm-prt-btn"><a id="_fi6cwc" href="#" bh="HL" _t="_blank" _sf="true" rel="noopener noreferrer"><span class="w-print-menu-icon a-non-cat-itm-prt-icon" data-icon="" aria-hidden="true"></span>
+Print</a>
+</td><td class="noWrap">
+ 
+ 
+<div class="a-cat-butn-div">
+ 
+ 
+<button tabindex="0" bh="TB" id="_byxldc" type="button" class="w-btn w-btn-primary aw7_w-btn-primary"><span>
+ 
+ 
+Add to Cart
+ 
+</span></button>
+ 
+ 
+ 
+</div>
+ 
+ 
+</td><td class="noWrap">
+ 
+ 
+<div class="a-cat-butn-div">
+ 
+ 
+<button tabindex="0" bh="TB" id="_rflhs" type="button" class="w-btn aw7_w-btn"><span>
+ 
+ 
+Cancel
+ 
+</span></button>
+ 
+ 
+ 
+</div>
+ 
+ 
+</td></tr></tbody></table></td></tr></tbody></table>
+ 
+ 
+</td>
+</tr>
+<tr>
+ 
+<td class="w-wizard-layout-border"></td>
+ 
+</tr>
+<tr>
+ 
+<td class="vaT w-wizard-layout-bottom-right">
+<div class="flexContainer"><div class="wizBody">
+ 
+<span id="_qixkf">
+ 
+<div class="rr" id="_pr6zt">
+ 
+</div>
+ 
+</span>
+ 
+ 
+ 
+ 
+ 
+<div class="a-arw-wizard-content" role="region" aria-label="Wizard Content">
+ 
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){ariba.Dom.removeBodyClass("a-dashbrd-page-bg");
+ariba.Dom.setBodyClass("a-cat-home-page-nav-display");
+});</script>
+ 
+<table width="100%" class="leg-p-t-10 a-non-cat-itm-tbl-pad" cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+<td class="leg-brdr-1-sld-d5d5d5">
+ 
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="vaT">
+ 
+ 
+ 
+ 
+ 
+<table id="_awofqc" border="0" cellspacing="0" cellpadding="0">
+ 
+<tbody><tr id="_fijis">
+<td valign="top">
+<table class="ftL" id="_1ly0td" border="0" role="presentation" cellspacing="0" cellpadding="0" width="100%">
+<tbody><tr>
+<td class="fflS"></td>
+<td class="ffiS"></td>
+<td class="ffpS"></td>
+</tr>
+ 
+ 
+ 
+<tr id="_guaxab" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_ov1cbd" id="_ov1cbdLabel">Purch&nbsp;Org:</label></td>
+<td class="ffi"><span id="_kr5mbd">
+</span></td>
+<td class="ffp">
+ 
+ 
+ 
+<div bh="CH" _mrs="4" _ns="(no value)" id="_39ig1" class="w-chWrapper">
+ 
+<div class="rr" id="_fcro4b">
+<span class="w-chWrap" awmenuid="CHM_39ig1">
+<div class="w-chMenuPositionObj">
+<div class="w-chWrapLeft">
+ 
+ 
+ 
+ 
+<input value="US00 (US Purch.Org)" aria-invalid="false" type="text" onblur="return ariba.Chooser.chooserBlur(this, event) &amp;&amp; ariba.Handlers.hTextBlur(this, event);" id="_ov1cbd" class="w-chValidSel w-txt w-txt-dsize w-chInput" bh="CH" autocorrect="off" autocapitalize="off" _tf="AC" _pl="" onfocus="return ariba.Chooser.chooserFocus(this, event);" autocomplete="off" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" aria-owns="CHM_39ig1" role="combobox" marker="w-chInput" name="_2hesxc"><div class="rr" id="_zvwqwd"></div>
+ 
+</div>
+ 
+<div class="w-chWrapRight">
+<a tabindex="-1" href="#"><div class="w-chPullDownDiv w-chPic">
+<div data-icon="" aria-hidden="true" title="Select from the list" class="w-ch-fi"></div>
+</div></a></div>
+<div class="w-chCustomContent">
+ 
+</div>
+ 
+</div>
+<div class="w-chMultiContainer is-dnone">
+ 
+</div>
+</span>
+<div class="awmenu w-pm-menu is-dnone" id="CHM_39ig1" _reloc="1" data-onhide="ariba.Chooser.onMenuHide()" role="listbox" style="min-width: 289px;">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+<span class="w-chSelContainer"><span class="w-chSelections">
+<span chlname="ChooserList" class="w-chList">
+ 
+ 
+<a role="option" id="_dlv60c" _ct="ariba.Chooser.chooserMenuTrigger(this, event)" bh="PMI" class="w-pmi-item w-pmi-bullet" aria-hidden="false" href="#" tabindex="-1" skiplink="0">
+ 
+<span class="w-pm-icon-bullet" aria-hidden="true" data-icon=""></span>
+ 
+US00 (US Purch.Org)</a>
+ 
+ 
+</span>
+</span>
+ 
+ 
+<input value="" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="__ysexb" class="w-txt w-txt-dsize w-chSelList is-dnone" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="__ysexb"><div class="rr" id="_wcxzyc"></div>
+ 
+ 
+<input value="-1" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_j_yibc" class="w-txt w-txt-dsize w-chSelIndex is-dnone" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="_j_yibc"><div class="rr" id="_sjipxc"></div></span>
+<span class="w-chSelContainer"><span class="w-chMatches"></span>
+ 
+ 
+<input value="" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_o646md" class="w-txt w-txt-dsize w-chSelList is-dnone" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="_o646md"><div class="rr" id="_nb_r9"></div>
+ 
+ 
+<input value="-1" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_y$e42d" class="w-txt w-txt-dsize w-chSelIndex is-dnone" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="_y$e42d"><div class="rr" id="_udjcdd"></div></span>
+ 
+ 
+<div class="w-chSeparator"></div>
+<a role="option" id="_2msld" bh="PMI" class="w-pmi-item w-chItemSpl" aria-hidden="false" href="#" tabindex="-1">
+ 
+ 
+<div class="w-chSearchLink">
+<div class="w-ch-srch-loop" aria-hidden="true" data-icon=""></div>
+Search more
+</div></a>
+ 
+</div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('CHM_39ig1');
+</script>
+ 
+ 
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){ariba.Chooser.initChooser('_39ig1', false, false, false, false, false,
+true, false, null, null, null, '');
+});</script><div class="w-chk-container is-dnone">
+<input bh="CHKINP" hasaction="false" class="w-chk-native" value="1" type="checkbox" marker="w-chFullMatch" name="_2zv7cc"><label bh="CHK" class="w-chk w-chk-dsize is-dnone"></label>
+</div>
+</div>
+</div>
+ 
+</td>
+</tr>
+ 
+ 
+ 
+</tbody></table>
+ 
+</td>
+<td class="ftAs"></td>
+<td valign="top">
+<table class="ftR" id="_b0czbd" border="0" role="presentation" cellspacing="0" cellpadding="0" width="100%">
+<tbody><tr>
+<td class="fflS"></td>
+<td class="ffiS"></td>
+<td class="ffpS"></td>
+</tr>
+</tbody></table>
+ 
+</td>
+</tr>
+ 
+</tbody></table>
+ 
+ 
+ 
+</td></tr></tbody></table>
+ 
+ 
+<div class="leg-p-t-15">
+ 
+ 
+ 
+ 
+ 
+ 
+<table id="_e4oo2c" border="0" cellspacing="0" cellpadding="0">
+ 
+<tbody><tr id="_h6cjh">
+<td valign="top">
+<table class="ftL" id="_w5dg4d" border="0" role="presentation" cellspacing="0" cellpadding="0" width="100%">
+<tbody><tr>
+<td class="fflS"></td>
+<td class="ffiS"></td>
+<td class="ffpS"></td>
+</tr>
+ 
+ 
+ 
+<tr id="_qbzq6c" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_x5x0pb" id="_x5x0pbLabel">Full&nbsp;Description:</label></td>
+<td class="ffi"><span id="_yw2m9b"><div class="required is-inline">
+<span title="Required Field" class="w-field-req">*</span>
+ 
+</div></span></td>
+<td class="ffp">
+ 
+ 
+ 
+ 
+<textarea aria-invalid="false" onpaste="var fnc=function(){ariba.Dom.limitTextLength(this,4000);}; setTimeout(fnc.bind(this),250)" onblur="ariba.Handlers.hTextBlur(this, event)" id="_x5x0pb" class="w-txt w-txtarea w-txt-dsize" bh="TA" _pl="" _ml="4000" _isrf="false" cols="52" rows="3" name="_cu6vqd">Enter a description for this item.</textarea><div class="rr" id="_9a3dl">
+</div>
+ 
+ 
+ 
+ 
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+<tr id="_xwhigd" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_7odegd" id="_7odegdLabel">Commodity&nbsp;Code:</label></td>
+<td class="ffi"><span id="_6jbtxc"><div class="required is-inline">
+<span title="Required Field" class="w-field-req">*</span>
+ 
+</div></span></td>
+<td class="ffp">
+ 
+ 
+ 
+<div bh="CH" _mrs="4" _ns="(no value)" id="_9p8cgc" class="w-chWrapper">
+ 
+<div class="rr" id="_rmwa5b">
+<span class="w-chWrap" awmenuid="CHM_9p8cgc">
+<div class="w-chMenuPositionObj">
+<div class="w-chWrapLeft">
+ 
+ 
+ 
+ 
+<input value="(no value)" aria-invalid="false" type="text" onblur="return ariba.Chooser.chooserBlur(this, event) &amp;&amp; ariba.Handlers.hTextBlur(this, event);" id="_7odegd" class="w-chNoSel w-txt w-txt-dsize w-chInput" bh="CH" autocorrect="off" autocapitalize="off" _tf="AC" _pl="" onfocus="return ariba.Chooser.chooserFocus(this, event);" autocomplete="off" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" aria-owns="CHM_9p8cgc" role="combobox" marker="w-chInput" name="_lum$dd"><div class="rr" id="__aek7d"></div>
+ 
+</div>
+ 
+<div class="w-chWrapRight">
+<a tabindex="-1" href="#"><div class="w-chPullDownDiv w-chPic">
+<div data-icon="" aria-hidden="true" title="Select from the list" class="w-ch-fi"></div>
+</div></a></div>
+<div class="w-chCustomContent">
+ 
+</div>
+ 
+</div>
+<div class="w-chMultiContainer is-dnone">
+ 
+</div>
+</span>
+<div class="awmenu w-pm-menu is-dnone" id="CHM_9p8cgc" _reloc="1" data-onhide="ariba.Chooser.onMenuHide()" role="listbox" style="min-width: 289px;">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+<span class="w-chSelContainer"><span class="w-chSelections">
+<span chlname="ChooserList" class="w-chList">
+ 
+ 
+<a role="option" id="_3qegpb" _ct="ariba.Chooser.chooserMenuTrigger(this, event)" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1" skiplink="0">
+ 
+D03-NETWORK SERVICES</a>
+ 
+ 
+</span>
+</span>
+ 
+ 
+<input value="" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_kadrjb" class="w-txt w-txt-dsize w-chSelList is-dnone" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="_kadrjb"><div class="rr" id="_sva7xc"></div>
+ 
+ 
+<input value="-1" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_5md9fc" class="w-txt w-txt-dsize w-chSelIndex is-dnone" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="_5md9fc"><div class="rr" id="_oq1huc"></div></span>
+<span class="w-chSelContainer"><span class="w-chMatches"></span>
+ 
+ 
+<input value="" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_yixpsd" class="w-txt w-txt-dsize w-chSelList is-dnone" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="_yixpsd"><div class="rr" id="_fypj_"></div>
+ 
+ 
+<input value="-1" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_cnxnod" class="w-txt w-txt-dsize w-chSelIndex is-dnone" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="_cnxnod"><div class="rr" id="_2ueued"></div></span>
+ 
+ 
+<div class="w-chSeparator"></div>
+<a role="option" id="_su9qd" bh="PMI" class="w-pmi-item w-chItemSpl" aria-hidden="false" href="#" tabindex="-1">
+ 
+ 
+<div class="w-chSearchLink">
+<div class="w-ch-srch-loop" aria-hidden="true" data-icon=""></div>
+Search more
+</div></a>
+ 
+</div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('CHM_9p8cgc');
+</script>
+ 
+ 
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){ariba.Chooser.initChooser('_9p8cgc', false, false, false, false, false,
+true, false, null, null, null, '');
+});</script><div class="w-chk-container is-dnone">
+<input bh="CHKINP" hasaction="false" class="w-chk-native" value="1" type="checkbox" marker="w-chFullMatch" name="_r2d1xc"><label bh="CHK" class="w-chk w-chk-dsize is-dnone"></label>
+</div>
+</div>
+</div>
+ 
+ 
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+<tr id="_htflbb" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_9jwhfc" id="_9jwhfcLabel">Material&nbsp;Group:</label></td>
+<td class="ffi"><span id="_b4w54b">
+</span></td>
+<td class="ffp">
+ 
+(no value)
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+<tr id="_h4f4_" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_u56wkb" id="_u56wkbLabel">Account&nbsp;Type:</label></td>
+<td class="ffi"><span id="_$rqyzc"><div class="required is-inline">
+<span title="Required Field" class="w-field-req">*</span>
+ 
+</div></span></td>
+<td class="ffp">
+ 
+ 
+ 
+ 
+<div class="rr" id="_3i3_9" emittags="false">
+ 
+ 
+<div aria-required="false" tabindex="0" index="0" aria-expanded="false" aria-haspopup="true" aria-autocomplete="list" role="combobox" aria-describedby="text__jotd6c" aria-labelledby="_u56wkbLabel" bh="DDM" href="#" class="w-dropdown" id="_jotd6c" name="_jotd6c" style="min-width: 85.6875px;"><span class="w-dropdown-selected" role="textbox" id="text__jotd6c">
+(no value)</span><span class="w-dropdown-pic-ct" aria-hidden="true" data-icon=""></span><div id="Items__jotd6c" class="w-dropdown-items" role="listbox" data-dropdownid="_jotd6c" tabindex="-1" style="width: 104.688px;">
+ 
+<div data-selected="true" role="option" bh="DDI" id="_jotd6c0" index="0" class="w-dropdown-item is-bold" tabindex="-1">
+(no value)</div></div>
+<input value="0" id="_nafyed" type="hidden" name="_nafyed"></div>
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){
+ariba.AWWidgets.DropDown.init(true,
+false,true,"_jotd6c");
+});</script>
+</div>
+ 
+ 
+ 
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<tr id="_gwq8cd" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_uv9fvc" id="_uv9fvcLabel">Quantity:</label></td>
+<td class="ffi"><span id="_amdktb">
+</span></td>
+<td nowrap="" class="ffp noWrap">
+ 
+ 
+ 
+ 
+<input value="1" aria-invalid="false" type="text" size="13" onblur="ariba.Handlers.hTextBlur(this, event)" id="_uv9fvc" class="w-txt" bh="TF" autocorrect="off" autocapitalize="off" _pl="" aria-labelledby="_uv9fvcLabel" name="_sf$62b"><div class="rr" id="_6pupu"></div>
+ 
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+<tr id="_dnckgc" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_eipv" id="_eipvLabel">Unit&nbsp;of&nbsp;Measure:</label></td>
+<td class="ffi"><span id="_ituf5c">
+</span></td>
+<td class="ffp">
+ 
+ 
+ 
+<div bh="CH" _mrs="4" _ns="(no value)" id="_fezws" class="w-chWrapper">
+ 
+<div class="rr" id="_7hnxib">
+<span class="w-chWrap" awmenuid="CHM_fezws">
+<div class="w-chMenuPositionObj">
+<div class="w-chWrapLeft">
+ 
+ 
+ 
+ 
+<input value="each" aria-invalid="false" type="text" onblur="return ariba.Chooser.chooserBlur(this, event) &amp;&amp; ariba.Handlers.hTextBlur(this, event);" id="_eipv" class="w-txt w-txt-dsize w-chInput" bh="CH" autocorrect="off" autocapitalize="off" _tf="AC" _pl="" onfocus="return ariba.Chooser.chooserFocus(this, event);" autocomplete="off" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" aria-owns="CHM_fezws" role="combobox" marker="w-chInput" name="_mjjt2b"><div class="rr" id="_iji0a"></div>
+ 
+</div>
+ 
+<div class="w-chWrapRight">
+<a tabindex="-1" href="#"><div class="w-chPullDownDiv w-chPic">
+<div data-icon="" aria-hidden="true" title="Select from the list" class="w-ch-fi"></div>
+</div></a></div>
+<div class="w-chCustomContent">
+ 
+</div>
+ 
+</div>
+<div class="w-chMultiContainer is-dnone">
+ 
+</div>
+</span>
+<div class="awmenu w-pm-menu is-dnone" id="CHM_fezws" _reloc="1" data-onhide="ariba.Chooser.onMenuHide()" role="listbox">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+<span class="w-chSelContainer"><span class="w-chSelections">
+<span chlname="ChooserList" class="w-chList">
+ 
+ 
+<a role="option" id="_1vi5i" _ct="ariba.Chooser.chooserMenuTrigger(this, event)" bh="PMI" class="w-pmi-item w-pmi-bullet" aria-hidden="false" href="#" tabindex="-1">
+ 
+<span class="w-pm-icon-bullet" aria-hidden="true" data-icon=""></span>
+ 
+each</a>
+ 
+ 
+</span>
+</span>
+ 
+ 
+<input value="" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_hzlvgc" class="w-txt w-txt-dsize w-chSelList is-dnone" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="_hzlvgc"><div class="rr" id="_8km2ic"></div>
+ 
+ 
+<input value="-1" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_a$v5qb" class="w-txt w-txt-dsize w-chSelIndex is-dnone" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="_a$v5qb"><div class="rr" id="_g1tshc"></div></span>
+<span class="w-chSelContainer"><span class="w-chMatches"></span>
+ 
+ 
+<input value="" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_r7fld" class="w-txt w-txt-dsize w-chSelList is-dnone" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="_r7fld"><div class="rr" id="_rxput"></div>
+ 
+ 
+<input value="-1" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_h_5jn" class="w-txt w-txt-dsize w-chSelIndex is-dnone" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="_h_5jn"><div class="rr" id="_yl4znd"></div></span>
+ 
+ 
+<div class="w-chSeparator"></div>
+<a role="option" id="_pn1usd" bh="PMI" class="w-pmi-item w-chItemSpl" aria-hidden="false" href="#" tabindex="-1">
+ 
+ 
+<div class="w-chSearchLink">
+<div class="w-ch-srch-loop" aria-hidden="true" data-icon=""></div>
+Search more
+</div></a>
+ 
+</div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('CHM_fezws');
+</script>
+ 
+ 
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){ariba.Chooser.initChooser('_fezws', false, false, false, false, false,
+true, false, null, null, null, '');
+});</script><div class="w-chk-container is-dnone">
+<input bh="CHKINP" hasaction="false" class="w-chk-native" value="1" type="checkbox" marker="w-chFullMatch" name="_n$llqb"><label bh="CHK" class="w-chk w-chk-dsize is-dnone"></label>
+</div>
+</div>
+</div>
+ 
+ 
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<tr id="_rjmuyb" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_lvqnec" id="_lvqnecLabel">Price:</label></td>
+<td class="ffi"><span id="_nhla3c"><div class="required is-inline">
+<span title="Required Field" class="w-field-req">*</span>
+ 
+</div></span></td>
+<td nowrap="" class="ffp noWrap">
+ 
+ 
+ 
+ 
+ 
+<span class="noWrap">
+ 
+ 
+ 
+<input value="$0.00" aria-invalid="false" type="text" size="7" onblur="ariba.Handlers.hTextBlur(this, event)" id="_lvqnec" class="w-txt" bh="TF" autocorrect="off" autocapitalize="off" _pl="" name="_uavswc"><div class="rr" id="_6$3kdb"></div>
+ 
+ 
+<a href="#" aria-label="Currency" _mid="_tyvupd" _pos="null" bh="PML" id="_zxnrfd" aria-haspopup="true">
+USD<span class="w-pml-icon aw7_w-pml-icon" data-icon="" aria-hidden="true"></span></a>
+ 
+<div class="awmenu w-pm-menu is-dnone" id="_tyvupd" _reloc="1">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+ 
+ 
+<a role="menuitem" id="_jwfvnd" bh="PMI" class="w-pmi-item w-pmi-check" aria-hidden="false" href="#" tabindex="-1">
+<span class="w-pm-icon-check" aria-hidden="true" data-icon=""></span>
+ 
+ 
+ 
+USD
+</a>
+ 
+ 
+<a role="menuitem" id="_w91sk" bh="PMI" class="w-pmi-item" aria-hidden="false" href="#" tabindex="-1">
+ 
+ 
+<span class="bold">
+Other...
+</span>
+</a>
+</div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('_tyvupd');
+</script>
+ 
+ 
+ 
+ 
+</span>
+ 
+ 
+ 
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+<tr id="_dmyxfd" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_n4j_hd" id="_n4j_hdLabel"></label></td>
+<td class="ffi"><span id="_g6ooyb">
+</span></td>
+<td class="ffp">
+ 
+ 
+ 
+ 
+<a id="_olpexd" href="#" bh="HL" _sf="true">Additional Pricing Details</a>
+<div class="rr" id="_whhhq">
+ 
+ 
+ 
+<a href="#" aria-label="Additional Pricing Details" class="awmenuLink linkArrow" _mid="_qzl3gb" bh="PML" id="_7guk4d" aria-labelledby="_n4j_hdLabel" alt="Information Link" aria-haspopup="true"><div class="w-ct-icon" aria-hidden="true" data-icon=""></div>
+</a>
+<div class="w-pm-menu w-ct-reg is-dnone" id="_qzl3gb" _reloc="1" _ondisplay="ariba.Widgets.sizeMsgDiv(elm)">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+<div class="rr" id="_qenur"><div awneedsloading="true" class="lazyLoading" id="_vf1qpd">Loading...</div>
+</div>
+</div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('_qzl3gb');
+</script>
+ 
+ 
+ 
+ 
+</div>
+ 
+ 
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<tr id="_rftytc" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_s4uzdc" id="_s4uzdcLabel">Amount:</label></td>
+<td class="ffi"><span id="_ur0ruc">
+</span></td>
+<td nowrap="" class="ffp noWrap">
+ 
+ 
+ 
+ 
+ 
+$0.00 USD
+ 
+ 
+ 
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+</tbody></table>
+ 
+</td>
+<td class="ftAs"></td>
+<td valign="top">
+<table class="ftR" id="_egzrqd" border="0" role="presentation" cellspacing="0" cellpadding="0" width="100%">
+<tbody><tr>
+<td class="fflS"></td>
+<td class="ffiS"></td>
+<td class="ffpS"></td>
+</tr>
+</tbody></table>
+ 
+</td>
+</tr>
+ 
+</tbody></table>
+ 
+ 
+ 
+</div>
+ 
+<div class="smallbuttonsecInline a-non-cat-itm-pad-upd-butn-pad">
+ 
+ 
+<div class="a-cat-butn-div">
+ 
+ 
+<button tabindex="0" bh="TB" id="_ggpj2b" type="button" class="w-btn aw7_w-btn w-btn-small" title="Update the amount"><span>
+ 
+ 
+Update Amount
+ 
+ 
+</span></button>
+ 
+ 
+ 
+</div>
+ 
+ 
+ 
+</div>
+<h2 class="leg-m-l-10 leg-p-t-15 leg-p-b-10 leg-clr-666 leg-font-size-12 a-non-cat-itm-h2">
+Supplier Information
+</h2>
+<div class="leg-m-l-10 leg-m-r-10 leg-brdr-t-1 leg-brdr-r-1-sld-d5d5d5 leg-p-t-15 a-non-cat-itm-line">
+</div>
+<div class="leg-p-b-15">
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<table id="_zeyzwb" border="0" cellspacing="0" cellpadding="0">
+ 
+<tbody><tr id="_ntggod">
+<td valign="top">
+<table class="ftL" id="_1liz2d" border="0" role="presentation" cellspacing="0" cellpadding="0" width="100%">
+<tbody><tr>
+<td class="fflS"></td>
+<td class="ffiS"></td>
+<td class="ffpS"></td>
+</tr>
+ 
+ 
+ 
+<tr id="_6flovd" valign="middle" bh="ROV" origclass="" class="hov">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_afsfuc" id="_afsfucLabel">Vendor:</label></td>
+<td class="ffi"><span id="_ut$wbc">
+</span></td>
+<td class="ffp">
+ 
+ 
+ 
+<div bh="CH" _mrs="4" _ns="(No Preference)" id="_qnyhbd" class="w-chWrapper">
+ 
+<div class="rr" id="_4spa_b">
+<span class="w-chWrap" awmenuid="CHM_qnyhbd">
+<div class="w-chMenuPositionObj w-chWrapper-border-focus" aria-expanded="false">
+<div class="w-chWrapLeft">
+ 
+ 
+ 
+ 
+<input value="0002190112 (2190112 BLOOMBERG FINANCE L P)" aria-invalid="false" type="text" onblur="return ariba.Chooser.chooserBlur(this, event) &amp;&amp; ariba.Handlers.hTextBlur(this, event);" id="_afsfuc" class="w-txt w-txt-dsize w-chInput" bh="CH" autocorrect="off" autocapitalize="off" _tf="AC" _pl="" onfocus="return ariba.Chooser.chooserFocus(this, event);" autocomplete="off" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" aria-owns="CHM_qnyhbd" role="combobox" marker="w-chInput" name="_qoosa"><div class="rr" id="_iz9ydc"></div>
+ 
+</div>
+ 
+<div class="w-chWrapRight">
+<a tabindex="-1" href="#"><div class="w-chPullDownDiv w-chPic">
+<div data-icon="" aria-hidden="true" title="Select from the list" class="w-ch-fi"></div>
+</div></a></div>
+<div class="w-chCustomContent">
+ 
+</div>
+ 
+</div>
+<div class="w-chMultiContainer is-dnone">
+ 
+</div>
+</span>
+<script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('CHM_qnyhbd');
+</script>
+ 
+ 
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){ariba.Chooser.initChooser('_qnyhbd', false, false, false, false, false,
+true, false, null, null, null, '');
+});</script><div class="w-chk-container is-dnone">
+<input bh="CHKINP" hasaction="false" class="w-chk-native" value="1" type="checkbox" marker="w-chFullMatch" name="_nv_jxd"><label bh="CHK" class="w-chk w-chk-dsize is-dnone"></label>
+</div>
+</div>
+</div>
+ 
+ 
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+<tr id="_hs3wtc" valign="middle" bh="ROV" origclass="hov" class="hov">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_qygv7" id="_qygv7Label">Contact:</label></td>
+<td class="ffi"><span id="_2msrrb">
+</span></td>
+<td nowrap="" class="ffp noWrap">
+ 
+<a id="_jlg4xd" href="#" bh="HL" _sf="true">2190112 BLOOMBERG FINANCE L P</a>&nbsp;[&nbsp;<a id="_gxelkc" href="#" bh="HL" _sf="true" alt="Select other items...">select</a>&nbsp;]
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+<tr id="_xxjvo" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_wf12eb" id="_wf12ebLabel">Additional&nbsp;Supplier&nbsp;Email&nbsp;Address:</label></td>
+<td class="ffi"><span id="_x95fec">
+</span></td>
+<td nowrap="" class="ffp noWrap">
+<table class="cueT" cellpadding="0"><tbody><tr>
+<td>
+ 
+ 
+<input value="" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_wf12eb" class="w-txt w-txt-dsize" bh="TF" autocorrect="off" autocapitalize="off" _pl="" maxlength="100" aria-labelledby="_wf12ebLabel" name="_$v3rhb"><div class="rr" id="_oxtixc"></div>
+ 
+</td>
+<td class="ft-cuetip"><div class="rr" id="_9o7a$d">
+ 
+ 
+ 
+<a href="#" class="awmenuLink linkArrow" _mid="_72rwpc" bh="PML" id="_sukymd" aria-labelledby="_wf12ebLabel" alt="Information Link" aria-haspopup="true"><div class="w-ct-icon" aria-hidden="true" data-icon=""></div>
+</a>
+<div class="w-pm-menu w-ct-reg is-dnone" id="_72rwpc" _reloc="1" _ondisplay="ariba.Widgets.sizeMsgDiv(elm)">
+<div class="w-pm-dummy-img"><img width="0" height="0" border="0"></div>
+ 
+<div class="rr" id="__caq$b"><div awneedsloading="true" class="lazyLoading" id="_xgmml">Loading...</div>
+</div>
+</div><script>
+if (ariba_IR) ariba.Dom.removeRelocatedCopy('_72rwpc');
+</script>
+ 
+ 
+ 
+ 
+</div>
+</td>
+</tr></tbody></table>
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<tr id="_x8tmrb" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_ff$n$c" id="_ff$n$cLabel">Payment&nbsp;Terms:</label></td>
+<td class="ffi"><span id="_zuzolb">
+</span></td>
+<td class="ffp">
+ 
+<a id="_gzd9_d" href="#" bh="HL" _sf="true" class="hoverLink">I015</a>
+</td>
+</tr><tr id="_h5tl2d" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_dom_ad" id="_dom_adLabel">Supplier&nbsp;Part&nbsp;Number:</label></td>
+<td class="ffi"><span id="_spyakc">
+</span></td>
+<td class="ffp">
+ 
+ 
+ 
+ 
+<input value="" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_dom_ad" class="w-txt w-txt-dsize" bh="TF" autocorrect="off" autocapitalize="off" _pl="" maxlength="255" aria-labelledby="_dom_adLabel" name="_uqbjuc"><div class="rr" id="_wl_ald"></div>
+ 
+</td>
+</tr>
+ 
+ 
+ 
+ 
+ 
+ 
+<tr id="_6u$9kc" valign="middle" bh="ROV" origclass="" class="">
+<td nowrap="" class="noWrap  noWrap ffl"><label for="_jfyu1b" id="_jfyu1bLabel">Supplier&nbsp;Part&nbsp;Auxiliary&nbsp;ID:</label></td>
+<td class="ffi"><span id="_w6f7gb">
+</span></td>
+<td class="ffp">
+ 
+ 
+ 
+ 
+<input value="" aria-invalid="false" type="text" onblur="ariba.Handlers.hTextBlur(this, event)" id="_jfyu1b" class="w-txt w-txt-dsize" bh="TF" autocorrect="off" autocapitalize="off" _pl="" maxlength="255" aria-labelledby="_jfyu1bLabel" name="_m_tlqd"><div class="rr" id="_x5e3nd"></div>
+ 
+</td>
+</tr>
+ 
+ 
+ 
+</tbody></table>
+ 
+</td>
+<td class="ftAs"></td>
+<td valign="top">
+<table class="ftR" id="_b0s0kd" border="0" role="presentation" cellspacing="0" cellpadding="0" width="100%">
+<tbody><tr>
+<td class="fflS"></td>
+<td class="ffiS"></td>
+<td class="ffpS"></td>
+</tr>
+</tbody></table>
+ 
+</td>
+</tr>
+ 
+</tbody></table>
+ 
+ 
+ 
+</div>
+ 
+</td>
+ 
+</tr>
+</tbody></table>
+</div>
+ 
+ 
+ 
+<span class="is-dnone" id="_s8bcjb">
+ 
+<div class="rr" id="_pr6zt">
+ 
+</div>
+ 
+</span>
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){
+var destElement = ariba.Dom.getElementById('_qixkf');
+var srcElement = ariba.Dom.getElementById('_s8bcjb');
+destElement.innerHTML = srcElement.innerHTML;
+});</script>
+ 
+ 
+<div aria-label="Wizard Action Buttons" role="region" class="a-arp-req-wizard-button-line-space-top">
+ 
+<table id="catContentId" width="100%" cellspacing="0" cellpadding="0" border="0" class="  : a-narw-wizard-title-summary-space"><tbody><tr>
+<td class="leg-font-size-20 leg-clr-666 leg-font-wght-n a-non-cat-itm-hdg">
+&nbsp;&nbsp;
+ 
+</td>
+ 
+<td class="noWrap leg-brdr-radius-5 leg-p-10-10-10-5 leg-bgc-f3f3f3 a-non-cat-itm-act-btn" width="1%"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="noWrap">
+ 
+ 
+<div class="a-cat-butn-div">
+ 
+ 
+<button tabindex="0" bh="TB" id="_yy07ed" type="button" class="w-btn w-btn-primary aw7_w-btn-primary"><span>
+ 
+ 
+Add to Cart
+ 
+</span></button>
+ 
+ 
+ 
+</div>
+ 
+ 
+</td><td class="noWrap">
+ 
+ 
+<div class="a-cat-butn-div">
+ 
+ 
+<button tabindex="0" bh="TB" id="_4fgrrb" type="button" class="w-btn aw7_w-btn"><span>
+ 
+ 
+Cancel
+ 
+</span></button>
+ 
+ 
+ 
+</div>
+ 
+ 
+</td></tr></tbody></table></td></tr></tbody></table></div>
+ 
+ 
+</div>
+</div>
+</td>
+</tr>
+ 
+</tbody></table>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<script>RJS(true, true, false, function(){
+ariba.Widgets.clearDialog();
+});</script>
+ 
+ 
+ 
+<script>RJS(true, false, false, function(){
+ariba.Input.allowSelectFirstText();
+});</script>
+</div>
+ 
+</div>
+ 
+</td>
+ 
+ 
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+ 
+ 
+<td valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+ 
+ 
+</tr>
+<tr>
+ 
+</tr>
+</tbody></table>
+</td>
+ 
+</tr>
+ 
+ 
