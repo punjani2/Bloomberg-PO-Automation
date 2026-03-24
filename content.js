@@ -138,6 +138,83 @@ async function selectChooserExact(label, searchText, exactOptionText) {
   await sleep(1000);
 }
 
+function isElementVisible(el) {
+  if (!el) return false;
+  const style = window.getComputedStyle(el);
+  if (style.display === "none" || style.visibility === "hidden" || style.opacity === "0") {
+    return false;
+  }
+  const rect = el.getBoundingClientRect();
+  return rect.width > 0 && rect.height > 0;
+}
+
+async function selectContactViaSelectButtons() {
+  const contactRow = findRowByLabel("Contact:");
+  if (!contactRow) {
+    throw new Error("Row not found for Contact:");
+  }
+
+  const rowSelectButton = Array.from(contactRow.querySelectorAll("button, a, [role='button']")).find(
+    el => normalizeText(el.textContent) === "select"
+  );
+
+  if (!rowSelectButton) {
+    throw new Error('No "Select" button found in Contact row');
+  }
+
+  // Some flows require opening Contact chooser and then confirming with Select.
+  for (let i = 0; i < 2; i++) {
+    rowSelectButton.click();
+    await sleep(700);
+
+    const confirmSelect = await waitFor(() => {
+      const candidates = Array.from(document.querySelectorAll("button, a, [role='button']"));
+      return candidates.find(el => {
+        const text = normalizeText(el.textContent);
+        const isInContactRow = contactRow.contains(el);
+        return text === "select" && !isInContactRow && isElementVisible(el);
+      });
+    }, 4000, 200);
+
+    if (!confirmSelect) {
+      // If no secondary Select appears, first click may already complete the selection.
+      break;
+    }
+
+    // If there is a result grid/list, pick the first selectable row before confirming.
+    const firstResult = Array.from(
+      document.querySelectorAll("[role='row'], .w-tbl-row, .w-pmi-item, li")
+    ).find(el => {
+      if (!isElementVisible(el)) return false;
+      const text = normalizeText(el.textContent);
+      return text && !text.includes("search more") && text !== "select";
+    });
+
+    if (firstResult) {
+      firstResult.click();
+      await sleep(200);
+    }
+
+    confirmSelect.click();
+    await sleep(900);
+  }
+}
+
+async function selectContactForVendor() {
+  logStep("Selecting Contact for Vendor");
+
+  const expectedContact = "0002190112 (2190112 BLOOMBERG FINANCE L P)";
+
+  try {
+    await selectChooserExact("Contact:", "2190112", expectedContact);
+    return;
+  } catch (chooserErr) {
+    logStep(`Contact chooser selection fallback: ${chooserErr.message}`);
+  }
+
+  await selectContactViaSelectButtons();
+}
+
 async function openAccountTypeDropdown() {
   const row = findRowByLabel("Account Type:");
   if (!row) throw new Error("Row not found for Account Type:");
@@ -177,7 +254,7 @@ async function selectAccountTypeWbs() {
     );
 
     return options.length > 1 ? { combo, itemsContainer } : null;
-  }, 12000, 500);
+  }, 20000, 500);
 
   if (!ready) {
     throw new Error("Account Type options did not populate");
@@ -259,6 +336,14 @@ async function fillBloombergForm() {
     results.push("Vendor");
   } catch (e) {
     results.push(`Vendor failed: ${e.message}`);
+    return results;
+  }
+
+  try {
+    await selectContactForVendor();
+    results.push("Contact");
+  } catch (e) {
+    results.push(`Contact failed: ${e.message}`);
     return results;
   }
 
