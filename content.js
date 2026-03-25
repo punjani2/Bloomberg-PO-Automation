@@ -336,70 +336,49 @@ async function openAccountTypeDropdown() {
 async function selectAccountTypeWbs() {
   logStep("Selecting Account Type -> WBS element");
 
-  const ready = await waitFor(() => {
-    const row = findRowByLabel("Account Type:");
-    if (!row) return null;
+  const row = findRowByLabel("Account Type:");
+  if (!row) throw new Error("Row not found for Account Type");
 
-    const combo = row.querySelector("[role='combobox'].w-dropdown");
-    if (!combo) return null;
-
-    clickElementRobust(combo);
-
-    const comboId = combo.getAttribute("id");
-    const itemsContainer = comboId ? document.getElementById(`Items_${comboId}`) : null;
-    if (!itemsContainer) return null;
-
-    const options = Array.from(
-      itemsContainer.querySelectorAll("[role='option'], .w-dropdown-item")
-    );
-
-    return options.length > 0 ? { combo, itemsContainer } : null;
-  }, 20000, 500);
-
-  if (!ready) {
-    throw new Error("Account Type options did not populate");
-  }
-
-  const { combo, itemsContainer } = ready;
-  const target = normalizeText("WBS element");
-
-  for (let i = 0; i < 40; i++) {
-    const options = Array.from(
-      itemsContainer.querySelectorAll("[role='option'], .w-dropdown-item")
-    );
-
-    let match = options.find(opt => normalizeText(opt.textContent) === target);
-    if (!match) {
-      match = options.find(opt => normalizeText(opt.textContent).includes(target));
-    }
-
-    if (match) {
-      match.scrollIntoView({ block: "nearest" });
-      await sleep(150);
-      match.click();
-      await sleep(1000);
-      return;
-    }
-
-    itemsContainer.scrollTop += 120;
-    await sleep(250);
-  }
+  const combo = row.querySelector("[role='combobox'].w-dropdown");
+  if (!combo) throw new Error("Dropdown not found for Account Type");
 
   clickElementRobust(combo);
+  await sleep(250);
 
-  // Fallback: choose last visible option (user indicates WBS element is the last item).
-  const fallbackOptions = Array.from(
-    itemsContainer.querySelectorAll("[role='option'], .w-dropdown-item")
-  ).filter(isElementVisible);
-  const lastOption = fallbackOptions[fallbackOptions.length - 1];
-  if (lastOption) {
-    clickElementRobust(lastOption);
-    await sleep(1000);
-    const afterText = normalizeText(combo.textContent || combo.innerText || "");
-    if (afterText.includes("wbs")) return;
+  const target = normalizeText("WBS element");
+
+  const option = await waitFor(() => {
+    const localOptions = Array.from(
+      row.querySelectorAll("[role='option'], .w-dropdown-item, li, div")
+    );
+
+    const globalOptions = Array.from(
+      document.querySelectorAll("[role='option'], .w-dropdown-item, .w-pmi-item, li, div")
+    );
+
+    const candidates = [...localOptions, ...globalOptions].filter(isElementVisible);
+
+    return candidates.find(el => normalizeText(el.textContent).includes(target));
+  }, 7000, 200);
+
+  if (!option) {
+    throw new Error('WBS element option was not found after opening Account Type dropdown');
   }
 
-  throw new Error('Option "WBS element" not found in Account Type dropdown (including last-option fallback)');
+  clickElementRobust(option);
+  await sleep(900);
+
+  const selectedText = normalizeText(combo.textContent || combo.innerText || "");
+  if (!selectedText.includes("wbs")) {
+    // One more click attempt (some UIs require second click to commit selection).
+    clickElementRobust(option);
+    await sleep(700);
+  }
+
+  const selectedTextFinal = normalizeText(combo.textContent || combo.innerText || "");
+  if (!selectedTextFinal.includes("wbs")) {
+    throw new Error("Account Type did not switch to WBS element");
+  }
 }
 
 async function clickButton(text) {
