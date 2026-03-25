@@ -21,11 +21,16 @@ function logStep(message) {
   console.log("[Bloomberg Filler]", message);
 }
 
+function canonicalLabel(text) {
+  return normalizeText(text).replace(/[:*]/g, "").trim();
+}
+
 function findRowByLabel(labelText) {
-  const target = normalizeText(labelText);
+  const target = canonicalLabel(labelText);
   const labels = Array.from(document.querySelectorAll("label"));
   for (const label of labels) {
-    if (normalizeText(label.textContent) === target) {
+    const labelTextNormalized = canonicalLabel(label.textContent);
+    if (labelTextNormalized === target || labelTextNormalized.startsWith(target)) {
       return label.closest("tr");
     }
   }
@@ -381,7 +386,20 @@ async function selectAccountTypeWbs() {
   }
 
   clickElementRobust(combo);
-  throw new Error('Option "WBS element" not found in Account Type dropdown');
+
+  // Fallback: choose last visible option (user indicates WBS element is the last item).
+  const fallbackOptions = Array.from(
+    itemsContainer.querySelectorAll("[role='option'], .w-dropdown-item")
+  ).filter(isElementVisible);
+  const lastOption = fallbackOptions[fallbackOptions.length - 1];
+  if (lastOption) {
+    clickElementRobust(lastOption);
+    await sleep(1000);
+    const afterText = normalizeText(combo.textContent || combo.innerText || "");
+    if (afterText.includes("wbs")) return;
+  }
+
+  throw new Error('Option "WBS element" not found in Account Type dropdown (including last-option fallback)');
 }
 
 async function clickButton(text) {
@@ -479,6 +497,8 @@ async function fillBloombergForm() {
     results.push(`Add to Cart failed: ${e.message}`);
     return results;
   }
+
+  await sleep(3000);
 
   try {
     await proceedAfterAddToCart();
