@@ -179,7 +179,7 @@ function getChooserRowValueText(label) {
 }
 
 async function selectVendorViaSearchMore() {
-  logStep("Selecting Vendor via Search More popup");
+  logStep("Selecting Vendor");
 
   const vendorRow = findRowByLabel("Vendor:");
   if (!vendorRow) {
@@ -193,82 +193,116 @@ async function selectVendorViaSearchMore() {
   vendorInput.dispatchEvent(new Event("blur", { bubbles: true }));
   await sleep(400);
 
-  const searchMoreControl = Array.from(vendorRow.querySelectorAll("button, a, [role='button'], span")).find(
-    el => normalizeText(el.textContent).includes("search more")
-  );
-
-  if (!searchMoreControl) {
-    throw new Error('Vendor "Search More" control not found');
-  }
-
-  searchMoreControl.click();
-
-  const popup = await waitFor(() => {
-    const dialogs = Array.from(document.querySelectorAll("[role='dialog'], .w-window, .w-dlg"));
-    return dialogs.find(el => isElementVisible(el) && normalizeText(el.textContent).includes("choose value for vendor"));
-  }, 7000, 200);
-
-  if (!popup) {
-    throw new Error('Vendor popup "Choose Value for Vendor" did not appear');
-  }
-
-  const popupSearch = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
-    el => normalizeText(el.textContent) === "search"
-  );
-  if (popupSearch) {
-    popupSearch.click();
-    await sleep(700);
-  }
-
   const targetId = normalizeText("0002190112");
   const targetName = normalizeText("BLOOMBERG FINANCE L P");
 
-  const vendorResultRow = await waitFor(() => {
-    const rows = Array.from(popup.querySelectorAll("tr, [role='row'], .w-tbl-row"));
-    return rows.find(row => {
-      const text = normalizeText(row.textContent);
-      return text.includes(targetId) && text.includes(targetName);
-    });
-  }, 8000, 200);
+  // First attempt: inline dropdown option under Vendor field (matches user's screenshot flow).
+  try {
+    const wrapper = vendorRow.querySelector(".w-chWrapper");
+    const menuId = wrapper?.querySelector(".w-chWrap")?.getAttribute("awmenuid");
+    if (!menuId) throw new Error("Vendor inline menu id not found");
 
-  if (!vendorResultRow) {
-    throw new Error("Vendor row 0002190112 BLOOMBERG FINANCE L P not found in popup");
-  }
+    const arrow =
+      vendorRow.querySelector(".w-chPullDownDiv") ||
+      vendorRow.querySelector(".w-chWrapRight a") ||
+      vendorRow.querySelector(".w-chWrapRight");
+    if (!arrow) throw new Error("Vendor inline dropdown arrow not found");
 
-  const clickVendorSelectButton = async () => {
-    const rowSelect = Array.from(vendorResultRow.querySelectorAll("button, a, [role='button']")).find(
-      el => normalizeText(el.textContent) === "select"
+    clickElementRobust(arrow);
+    await sleep(300);
+
+    const menu = await waitFor(() => document.getElementById(menuId), 4000, 200);
+    if (!menu) throw new Error("Vendor inline dropdown menu not found");
+
+    const option = await waitFor(() => {
+      const opts = Array.from(menu.querySelectorAll("[role='option'], .w-pmi-item"));
+      return opts.find(opt => {
+        const text = normalizeText(opt.textContent);
+        return text.includes(targetId) && text.includes(targetName);
+      });
+    }, 5000, 200);
+
+    if (!option) throw new Error("Vendor inline dropdown option not found");
+
+    clickElementRobust(option);
+    await sleep(700);
+  } catch (inlineErr) {
+    logStep(`Vendor inline dropdown fallback to Search More: ${inlineErr.message}`);
+
+    const searchMoreControl = Array.from(vendorRow.querySelectorAll("button, a, [role='button'], span")).find(
+      el => normalizeText(el.textContent).includes("search more")
     );
-    if (rowSelect) {
-      clickElementRobust(rowSelect);
-      await sleep(700);
-      return true;
+
+    if (!searchMoreControl) {
+      throw new Error(`Vendor inline dropdown failed and Search More not found: ${inlineErr.message}`);
     }
 
-    // Fallback: click the second visible "Select" in popup (first is usually No Preference).
-    const popupSelectButtons = Array.from(popup.querySelectorAll("button, a, [role='button']")).filter(
-      el => normalizeText(el.textContent) === "select" && isElementVisible(el)
-    );
-    if (popupSelectButtons.length >= 2) {
-      clickElementRobust(popupSelectButtons[1]);
-      await sleep(700);
-      return true;
+    searchMoreControl.click();
+
+    const popup = await waitFor(() => {
+      const dialogs = Array.from(document.querySelectorAll("[role='dialog'], .w-window, .w-dlg"));
+      return dialogs.find(el => isElementVisible(el) && normalizeText(el.textContent).includes("choose value for vendor"));
+    }, 7000, 200);
+
+    if (!popup) {
+      throw new Error('Vendor popup "Choose Value for Vendor" did not appear');
     }
 
-    return false;
-  };
+    const popupSearch = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
+      el => normalizeText(el.textContent) === "search"
+    );
+    if (popupSearch) {
+      popupSearch.click();
+      await sleep(700);
+    }
 
-  const selectClicked = await clickVendorSelectButton();
-  if (!selectClicked) {
-    throw new Error('Vendor row "Select" button not found/clickable');
-  }
+    const vendorResultRow = await waitFor(() => {
+      const rows = Array.from(popup.querySelectorAll("tr, [role='row'], .w-tbl-row"));
+      return rows.find(row => {
+        const text = normalizeText(row.textContent);
+        return text.includes(targetId) && text.includes(targetName);
+      });
+    }, 8000, 200);
 
-  const doneBtn = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
-    el => normalizeText(el.textContent) === "done"
-  );
-  if (doneBtn && isElementVisible(doneBtn)) {
-    doneBtn.click();
-    await sleep(600);
+    if (!vendorResultRow) {
+      throw new Error("Vendor row 0002190112 BLOOMBERG FINANCE L P not found in popup");
+    }
+
+    const clickVendorSelectButton = async () => {
+      const rowSelect = Array.from(vendorResultRow.querySelectorAll("button, a, [role='button']")).find(
+        el => normalizeText(el.textContent) === "select"
+      );
+      if (rowSelect) {
+        clickElementRobust(rowSelect);
+        await sleep(700);
+        return true;
+      }
+
+      // Fallback: click the second visible "Select" in popup (first is usually No Preference).
+      const popupSelectButtons = Array.from(popup.querySelectorAll("button, a, [role='button']")).filter(
+        el => normalizeText(el.textContent) === "select" && isElementVisible(el)
+      );
+      if (popupSelectButtons.length >= 2) {
+        clickElementRobust(popupSelectButtons[1]);
+        await sleep(700);
+        return true;
+      }
+
+      return false;
+    };
+
+    const selectClicked = await clickVendorSelectButton();
+    if (!selectClicked) {
+      throw new Error('Vendor row "Select" button not found/clickable');
+    }
+
+    const doneBtn = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
+      el => normalizeText(el.textContent) === "done"
+    );
+    if (doneBtn && isElementVisible(doneBtn)) {
+      doneBtn.click();
+      await sleep(600);
+    }
   }
 
   const selectedVendor = getChooserRowValueText("Vendor:");
