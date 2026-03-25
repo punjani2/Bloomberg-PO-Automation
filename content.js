@@ -331,15 +331,14 @@ async function openAccountTypeDropdown() {
 async function selectAccountTypeWbs() {
   logStep("Selecting Account Type -> WBS element");
 
-  const ready = await waitFor(async () => {
+  const ready = await waitFor(() => {
     const row = findRowByLabel("Account Type:");
     if (!row) return null;
 
     const combo = row.querySelector("[role='combobox'].w-dropdown");
     if (!combo) return null;
 
-    combo.click();
-    await sleep(250);
+    clickElementRobust(combo);
 
     const comboId = combo.getAttribute("id");
     const itemsContainer = comboId ? document.getElementById(`Items_${comboId}`) : null;
@@ -349,7 +348,7 @@ async function selectAccountTypeWbs() {
       itemsContainer.querySelectorAll("[role='option'], .w-dropdown-item")
     );
 
-    return options.length > 1 ? { combo, itemsContainer } : null;
+    return options.length > 0 ? { combo, itemsContainer } : null;
   }, 20000, 500);
 
   if (!ready) {
@@ -381,7 +380,7 @@ async function selectAccountTypeWbs() {
     await sleep(250);
   }
 
-  combo.click();
+  clickElementRobust(combo);
   throw new Error('Option "WBS element" not found in Account Type dropdown');
 }
 
@@ -463,6 +462,7 @@ async function fillBloombergForm() {
     results.push("Account Type");
   } catch (e) {
     results.push(`Account Type failed: ${e.message}`);
+    return results;
   }
 
   try {
