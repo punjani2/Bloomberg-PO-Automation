@@ -1,520 +1,429 @@
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+import streamlit as st
+import pandas as pd
+import gspread
+from google.oauth2.service_account import Credentials
+from datetime import datetime, timezone
+
+EXCEL_FILE = "Anushil_Organization_Skip_Level_Pairings_v4.xlsx"
+
+st.set_page_config(
+    page_title="Cross-functional Skip-Level Meeting Pairings",
+    layout="wide",
+    initial_sidebar_state="collapsed",
+)
+
+st.markdown("""
+<style>
+.stApp {
+    background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 45%, #f7f4ff 100%);
 }
-
-function normalizeText(text) {
-  return (text || "")
-    .replace(/\u00a0/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .toLowerCase();
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-width: 1200px;
 }
-
-function getCurrentDescription() {
-  const now = new Date();
-  const month = now.toLocaleString("en-US", { month: "long" });
-  const year = now.getFullYear();
-  return `Bloomberg Access - ${month} ${year}`;
+.main-title {
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: #1f2a44;
+    margin-bottom: 0.2rem;
 }
-
-function logStep(message) {
-  console.log("[Bloomberg Filler]", message);
+.sub-title {
+    font-size: 1rem;
+    color: #5b6475;
+    margin-bottom: 1.5rem;
 }
-
-function canonicalLabel(text) {
-  return normalizeText(text).replace(/[:*]/g, "").trim();
+.metric-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
+    border: 1px solid rgba(98, 118, 255, 0.14);
+    border-radius: 16px;
+    padding: 0.9rem 1rem;
+    box-shadow: 0 6px 16px rgba(31, 42, 68, 0.05);
 }
-
-function findRowByLabel(labelText) {
-  const target = canonicalLabel(labelText);
-  const labels = Array.from(document.querySelectorAll("label"));
-  for (const label of labels) {
-    const labelTextNormalized = canonicalLabel(label.textContent);
-    if (labelTextNormalized === target || labelTextNormalized.startsWith(target)) {
-      return label.closest("tr");
-    }
-  }
-  return null;
+.metric-label {
+    font-size: 0.9rem;
+    color: #667085;
+    margin-bottom: 0.35rem;
 }
-
-function findButtonByText(text) {
-  const target = normalizeText(text);
-  return Array.from(document.querySelectorAll("button")).find(
-    btn => normalizeText(btn.textContent) === target
-  );
+.metric-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1f2a44;
 }
-
-function setInputValue(input, value) {
-  if (!input) return;
-
-  input.focus();
-
-  const proto =
-    input.tagName === "TEXTAREA"
-      ? HTMLTextAreaElement.prototype
-      : HTMLInputElement.prototype;
-
-  const desc = Object.getOwnPropertyDescriptor(proto, "value");
-  if (desc?.set) {
-    desc.set.call(input, value);
-  } else {
-    input.value = value;
-  }
-
-  input.dispatchEvent(new Event("input", { bubbles: true }));
-  input.dispatchEvent(new Event("change", { bubbles: true }));
+div[data-testid="stRadio"] > div {
+    background: rgba(255,255,255,0.72);
+    padding: 0.65rem 0.9rem;
+    border-radius: 14px;
+    border: 1px solid rgba(120, 140, 180, 0.18);
 }
-
-async function waitFor(getter, timeoutMs = 12000, intervalMs = 250) {
-  const start = Date.now();
-  while (Date.now() - start < timeoutMs) {
-    const value = getter();
-    if (value) return value;
-    await sleep(intervalMs);
-  }
-  return null;
+div[data-testid="stTextInput"] > div > div input {
+    background-color: white;
+    border-radius: 12px;
 }
-
-async function setPlainField(label, value) {
-  logStep(`Setting plain field: ${label} -> ${value}`);
-  const row = findRowByLabel(label);
-  if (!row) throw new Error(`Row not found for ${label}`);
-
-  const input = row.querySelector("textarea, input[type='text'], input:not([type])");
-  if (!input) throw new Error(`Input not found for ${label}`);
-
-  setInputValue(input, value);
-  input.dispatchEvent(new Event("blur", { bubbles: true }));
-  await sleep(300);
+div[data-testid="stDataEditor"] {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(120, 140, 180, 0.18);
 }
-
-async function selectChooserExact(label, searchText, exactOptionText) {
-  logStep(`Selecting chooser: ${label} -> ${exactOptionText}`);
-  const row = findRowByLabel(label);
-  if (!row) throw new Error(`Row not found for ${label}`);
-
-  const input = row.querySelector("input.w-chInput");
-  if (!input) throw new Error(`Chooser input not found for ${label}`);
-
-  const wrapper = row.querySelector(".w-chWrapper");
-  const menuId = wrapper?.querySelector(".w-chWrap")?.getAttribute("awmenuid");
-  if (!menuId) throw new Error(`Chooser menu id not found for ${label}`);
-
-  const exact = normalizeText(exactOptionText);
-
-  // Clear then type
-  setInputValue(input, "");
-  await sleep(150);
-  setInputValue(input, searchText);
-  await sleep(400);
-
-  // Open dropdown explicitly
-  const arrow =
-    row.querySelector(".w-chPullDownDiv") ||
-    row.querySelector(".w-chWrapRight a") ||
-    row.querySelector(".w-chWrapRight");
-
-  if (arrow) {
-    arrow.click();
-  } else {
-    input.click();
-  }
-
-  const menu = await waitFor(() => document.getElementById(menuId), 5000, 200);
-  if (!menu) throw new Error(`Chooser menu not found for ${label}`);
-
-  // Wait for exact option
-  const option = await waitFor(() => {
-    const options = Array.from(menu.querySelectorAll("[role='option'], .w-pmi-item"));
-    return options.find(opt => normalizeText(opt.textContent) === exact);
-  }, 10000, 200);
-
-  if (!option) {
-    throw new Error(`Exact option "${exactOptionText}" not found for ${label}`);
-  }
-
-  option.scrollIntoView({ block: "nearest" });
-  await sleep(150);
-  option.click();
-  await sleep(1200);
-
-  input.dispatchEvent(new Event("change", { bubbles: true }));
-  input.dispatchEvent(new Event("blur", { bubbles: true }));
-  await sleep(1000);
+.stDownloadButton button, .stButton button {
+    border-radius: 10px;
+    font-weight: 600;
 }
-
-function isElementVisible(el) {
-  if (!el) return false;
-  const style = window.getComputedStyle(el);
-  if (style.display === "none" || style.visibility === "hidden" || style.opacity === "0") {
-    return false;
-  }
-  const rect = el.getBoundingClientRect();
-  return rect.width > 0 && rect.height > 0;
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(100,100,140,0.35), transparent);
 }
+</style>
+""", unsafe_allow_html=True)
 
-function clickElementRobust(el) {
-  if (!el) return;
-  el.scrollIntoView({ block: "center", inline: "center" });
-  el.dispatchEvent(new MouseEvent("mousedown", { bubbles: true }));
-  el.dispatchEvent(new MouseEvent("mouseup", { bubbles: true }));
-  el.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-}
+# ---------- Config from Streamlit secrets ----------
+GSHEET_URL = st.secrets["connections"]["gsheets"]["spreadsheet"]
+UPDATES_WORKSHEET = "updates"
 
-function getContactRowSelectedText() {
-  const contactRow = findRowByLabel("Contact:");
-  if (!contactRow) return "";
-
-  const valueEl = contactRow.querySelector("input.w-chInput, input[type='text'], a");
-  if (!valueEl) return normalizeText(contactRow.textContent);
-
-  const raw = valueEl.tagName === "INPUT" ? valueEl.value : valueEl.textContent;
-  return normalizeText(raw);
-}
-
-function getChooserRowValueText(label) {
-  const row = findRowByLabel(label);
-  if (!row) return "";
-
-  const valueEl = row.querySelector("input.w-chInput, input[type='text'], a");
-  if (!valueEl) return normalizeText(row.textContent);
-
-  const raw = valueEl.tagName === "INPUT" ? valueEl.value : valueEl.textContent;
-  return normalizeText(raw);
-}
-
-async function selectVendorViaSearchMore() {
-  logStep("Selecting Vendor");
-
-  const vendorRow = findRowByLabel("Vendor:");
-  if (!vendorRow) {
-    throw new Error("Row not found for Vendor:");
-  }
-
-  const vendorInput = vendorRow.querySelector("input.w-chInput");
-  if (!vendorInput) throw new Error("Vendor chooser input not found");
-
-  setInputValue(vendorInput, "Bloomberg Finance");
-  vendorInput.dispatchEvent(new Event("blur", { bubbles: true }));
-  await sleep(400);
-
-  const targetId = normalizeText("0002190112");
-  const targetName = normalizeText("BLOOMBERG FINANCE L P");
-
-  // First attempt: inline dropdown option under Vendor field (matches user's screenshot flow).
-  try {
-    const wrapper = vendorRow.querySelector(".w-chWrapper");
-    const menuId = wrapper?.querySelector(".w-chWrap")?.getAttribute("awmenuid");
-    if (!menuId) throw new Error("Vendor inline menu id not found");
-
-    const arrow =
-      vendorRow.querySelector(".w-chPullDownDiv") ||
-      vendorRow.querySelector(".w-chWrapRight a") ||
-      vendorRow.querySelector(".w-chWrapRight");
-    if (!arrow) throw new Error("Vendor inline dropdown arrow not found");
-
-    clickElementRobust(arrow);
-    await sleep(300);
-
-    const menu = await waitFor(() => document.getElementById(menuId), 4000, 200);
-    if (!menu) throw new Error("Vendor inline dropdown menu not found");
-
-    const option = await waitFor(() => {
-      const opts = Array.from(menu.querySelectorAll("[role='option'], .w-pmi-item"));
-      return opts.find(opt => {
-        const text = normalizeText(opt.textContent);
-        return text.includes(targetId) && text.includes(targetName);
-      });
-    }, 5000, 200);
-
-    if (!option) throw new Error("Vendor inline dropdown option not found");
-
-    clickElementRobust(option);
-    await sleep(700);
-  } catch (inlineErr) {
-    logStep(`Vendor inline dropdown fallback to Search More: ${inlineErr.message}`);
-
-    const searchMoreControl = Array.from(vendorRow.querySelectorAll("button, a, [role='button'], span")).find(
-      el => normalizeText(el.textContent).includes("search more")
-    );
-
-    if (!searchMoreControl) {
-      throw new Error(`Vendor inline dropdown failed and Search More not found: ${inlineErr.message}`);
+def get_gspread_client():
+    info = {
+        "type": st.secrets["connections"]["gsheets"]["type"],
+        "project_id": st.secrets["connections"]["gsheets"]["project_id"],
+        "private_key_id": st.secrets["connections"]["gsheets"]["private_key_id"],
+        "private_key": st.secrets["connections"]["gsheets"]["private_key"],
+        "client_email": st.secrets["connections"]["gsheets"]["client_email"],
+        "client_id": st.secrets["connections"]["gsheets"]["client_id"],
+        "auth_uri": st.secrets["connections"]["gsheets"]["auth_uri"],
+        "token_uri": st.secrets["connections"]["gsheets"]["token_uri"],
+        "auth_provider_x509_cert_url": st.secrets["connections"]["gsheets"]["auth_provider_x509_cert_url"],
+        "client_x509_cert_url": st.secrets["connections"]["gsheets"]["client_x509_cert_url"],
     }
 
-    searchMoreControl.click();
+    scopes = [
+        "https://www.googleapis.com/auth/spreadsheets",
+        "https://www.googleapis.com/auth/drive",
+    ]
+    creds = Credentials.from_service_account_info(info, scopes=scopes)
+    return gspread.authorize(creds)
 
-    const popup = await waitFor(() => {
-      const dialogs = Array.from(document.querySelectorAll("[role='dialog'], .w-window, .w-dlg"));
-      return dialogs.find(el => isElementVisible(el) && normalizeText(el.textContent).includes("choose value for vendor"));
-    }, 7000, 200);
+def get_updates_worksheet():
+    client = get_gspread_client()
+    spreadsheet = client.open_by_url(GSHEET_URL)
+    return spreadsheet.worksheet(UPDATES_WORKSHEET)
 
-    if (!popup) {
-      throw new Error('Vendor popup "Choose Value for Vendor" did not appear');
-    }
+def load_updates() -> pd.DataFrame:
+    try:
+        ws = get_updates_worksheet()
+        records = ws.get_all_records()
+        if not records:
+            return pd.DataFrame(columns=["row_key", "model", "status", "comments", "last_updated"])
+        df = pd.DataFrame(records)
+        for col in ["row_key", "model", "status", "comments", "last_updated"]:
+            if col not in df.columns:
+                df[col] = ""
+        return df[["row_key", "model", "status", "comments", "last_updated"]].copy()
+    except Exception as e:
+        st.error("Failed to read updates sheet.")
+        st.exception(e)
+        return pd.DataFrame(columns=["row_key", "model", "status", "comments", "last_updated"])
 
-    const popupSearch = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
-      el => normalizeText(el.textContent) === "search"
-    );
-    if (popupSearch) {
-      popupSearch.click();
-      await sleep(700);
-    }
+def save_updates(df_updates: pd.DataFrame) -> None:
+    ws = get_updates_worksheet()
+    df_updates = df_updates.fillna("")
+    data = [df_updates.columns.tolist()] + df_updates.astype(str).values.tolist()
+    ws.clear()
+    ws.update("A1", data)
 
-    const vendorResultRow = await waitFor(() => {
-      const rows = Array.from(popup.querySelectorAll("tr, [role='row'], .w-tbl-row"));
-      return rows.find(row => {
-        const text = normalizeText(row.textContent);
-        return text.includes(targetId) && text.includes(targetName);
-      });
-    }, 8000, 200);
+def upsert_updates(model_name: str, edited_df: pd.DataFrame) -> None:
+    updates = load_updates()
 
-    if (!vendorResultRow) {
-      throw new Error("Vendor row 0002190112 BLOOMBERG FINANCE L P not found in popup");
-    }
+    existing_other_models = updates[updates["model"] != model_name].copy()
 
-    const clickVendorSelectButton = async () => {
-      const rowSelect = Array.from(vendorResultRow.querySelectorAll("button, a, [role='button']")).find(
-        el => normalizeText(el.textContent) === "select"
-      );
-      if (rowSelect) {
-        clickElementRobust(rowSelect);
-        await sleep(700);
-        return true;
-      }
-
-      // Fallback: click the second visible "Select" in popup (first is usually No Preference).
-      const popupSelectButtons = Array.from(popup.querySelectorAll("button, a, [role='button']")).filter(
-        el => normalizeText(el.textContent) === "select" && isElementVisible(el)
-      );
-      if (popupSelectButtons.length >= 2) {
-        clickElementRobust(popupSelectButtons[1]);
-        await sleep(700);
-        return true;
-      }
-
-      return false;
-    };
-
-    const selectClicked = await clickVendorSelectButton();
-    if (!selectClicked) {
-      throw new Error('Vendor row "Select" button not found/clickable');
-    }
-
-    const doneBtn = Array.from(popup.querySelectorAll("button, a, [role='button']")).find(
-      el => normalizeText(el.textContent) === "done"
-    );
-    if (doneBtn && isElementVisible(doneBtn)) {
-      doneBtn.click();
-      await sleep(600);
-    }
-  }
-
-  const selectedVendor = getChooserRowValueText("Vendor:");
-  if (!selectedVendor.includes(targetId) || !selectedVendor.includes(targetName)) {
-    throw new Error("Vendor did not populate with 0002190112 BLOOMBERG FINANCE L P");
-  }
-}
-
-async function openAccountTypeDropdown() {
-  const row = findRowByLabel("Account Type:");
-  if (!row) throw new Error("Row not found for Account Type:");
-
-  const combo = row.querySelector("[role='combobox'].w-dropdown");
-  if (!combo) throw new Error("Dropdown not found for Account Type:");
-
-  combo.click();
-  await sleep(400);
-
-  const comboId = combo.getAttribute("id");
-  const itemsContainer = comboId ? document.getElementById(`Items_${comboId}`) : null;
-  if (!itemsContainer) throw new Error("Dropdown items not found for Account Type:");
-
-  return { combo, itemsContainer };
-}
-
-async function selectAccountTypeWbs() {
-  logStep("Selecting Account Type -> WBS element");
-
-  const row = findRowByLabel("Account Type:");
-  if (!row) throw new Error("Row not found for Account Type");
-
-  const combo = row.querySelector("[role='combobox'].w-dropdown");
-  if (!combo) throw new Error("Dropdown not found for Account Type");
-
-  clickElementRobust(combo);
-  await sleep(250);
-
-  const target = normalizeText("WBS element");
-
-  const option = await waitFor(() => {
-    const localOptions = Array.from(
-      row.querySelectorAll("[role='option'], .w-dropdown-item, li, div")
-    );
-
-    const globalOptions = Array.from(
-      document.querySelectorAll("[role='option'], .w-dropdown-item, .w-pmi-item, li, div")
-    );
-
-    const candidates = [...localOptions, ...globalOptions].filter(isElementVisible);
-
-    return candidates.find(el => normalizeText(el.textContent).includes(target));
-  }, 7000, 200);
-
-  if (!option) {
-    throw new Error('WBS element option was not found after opening Account Type dropdown');
-  }
-
-  clickElementRobust(option);
-  await sleep(900);
-
-  const selectedText = normalizeText(combo.textContent || combo.innerText || "");
-  if (!selectedText.includes("wbs")) {
-    // One more click attempt (some UIs require second click to commit selection).
-    clickElementRobust(option);
-    await sleep(700);
-  }
-
-  const selectedTextFinal = normalizeText(combo.textContent || combo.innerText || "");
-  if (!selectedTextFinal.includes("wbs")) {
-    throw new Error("Account Type did not switch to WBS element");
-  }
-}
-
-async function clickButton(text) {
-  logStep(`Clicking button: ${text}`);
-  const button = findButtonByText(text);
-  if (!button) throw new Error(`Button not found: ${text}`);
-  button.click();
-  await sleep(1200);
-}
-
-function getProceedToCheckoutElement() {
-  return (
-    document.getElementById("_xxfxrb") ||
-    Array.from(document.querySelectorAll("a, button")).find(el =>
-      normalizeText(el.textContent).includes("proceed to checkout")
+    current_model_updates = edited_df[["row_key", "Status", "Comments"]].copy()
+    current_model_updates = current_model_updates.rename(
+        columns={"Status": "status", "Comments": "comments"}
     )
-  );
-}
+    current_model_updates["model"] = model_name
+    current_model_updates["last_updated"] = datetime.now(timezone.utc).isoformat()
 
-async function proceedAfterAddToCart() {
-  logStep("Waiting for Proceed to Checkout");
-  const proceed = await waitFor(getProceedToCheckoutElement, 15000, 300);
-  if (!proceed) {
-    throw new Error("Proceed to Checkout not found after Add to Cart");
-  }
-  proceed.click();
-  await sleep(1500);
-}
+    merged = pd.concat([existing_other_models, current_model_updates], ignore_index=True)
+    merged = merged.drop_duplicates(subset=["model", "row_key"], keep="last")
+    save_updates(merged)
 
-async function fillBloombergForm() {
-  const results = [];
+# ---------- Load pairing data ----------
+df_11 = pd.read_excel(EXCEL_FILE, sheet_name="Q1 1-1 Allowed Dir Only")
+df_12 = pd.read_excel(EXCEL_FILE, sheet_name="Q1 1-2 Allowed Dir Only")
 
-  try {
-    await setPlainField("Full Description:", getCurrentDescription());
-    results.push("Full Description");
-  } catch (e) {
-    results.push(`Full Description failed: ${e.message}`);
-  }
+REMOVE_PATTERNS = [
+    "full stack developer intern",
+    "sales product line intern",
+    "unfilled",
+]
 
-  // Commodity early
-  try {
-    await selectChooserExact(
-      "Commodity Code:",
-      "D03",
-      "D03-NETWORK SERVICES"
-    );
-    results.push("Commodity Code");
-  } catch (e) {
-    results.push(`Commodity Code failed: ${e.message}`);
-    return results;
-  }
+def should_remove(series: pd.Series) -> pd.Series:
+    mask = pd.Series(False, index=series.index)
+    for pattern in REMOVE_PATTERNS:
+        mask = mask | series.astype(str).str.contains(pattern, case=False, na=False)
+    return mask
 
-  try {
-    await setPlainField("Quantity:", "1");
-    results.push("Quantity");
-  } catch (e) {
-    results.push(`Quantity failed: ${e.message}`);
-  }
+df_11 = df_11[~should_remove(df_11["IC Name"])].copy()
+df_12 = df_12[
+    ~should_remove(df_12["IC1 Name"])
+    & ~should_remove(df_12["IC2 Name"])
+].copy()
 
-  try {
-    await setPlainField("Price:", "2035.98");
-    results.push("Price");
-  } catch (e) {
-    results.push(`Price failed: ${e.message}`);
-  }
+df_11["IC Team"] = df_11["IC Team"].fillna("").astype(str).str.strip()
+df_11.loc[df_11["IC Team"] == "", "IC Team"] = df_11["IC Title"]
 
-  // Vendor via Search More popup
-  try {
-    await selectVendorViaSearchMore();
-    results.push("Vendor");
-  } catch (e) {
-    results.push(`Vendor failed: ${e.message}`);
-    return results;
-  }
+for prefix in ["IC1", "IC2"]:
+    df_12[f"{prefix} Team"] = df_12[f"{prefix} Team"].fillna("").astype(str).str.strip()
+    df_12.loc[df_12[f"{prefix} Team"] == "", f"{prefix} Team"] = df_12[f"{prefix} Title"]
 
-  try {
-    await selectAccountTypeWbs();
-    results.push("Account Type");
-  } catch (e) {
-    results.push(`Account Type failed: ${e.message}`);
-    return results;
-  }
+STATUS_OPTIONS = ["", "Scheduled", "Done", "Cancelled"]
 
-  try {
-    await clickButton("Update Amount");
-    results.push("Update Amount");
-  } catch (e) {
-    results.push(`Update Amount failed: ${e.message}`);
-  }
+# ---------- Header ----------
+st.markdown('<div class="main-title">Cross-functional Skip-Level Meeting Pairings</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="sub-title">Search by IC or Director, track meeting progress, and add comments in one place.</div>',
+    unsafe_allow_html=True
+)
 
-  try {
-    await clickButton("Add to Cart");
-    results.push("Add to Cart");
-  } catch (e) {
-    results.push(`Add to Cart failed: ${e.message}`);
-    return results;
-  }
+col1, col2 = st.columns([1, 2])
+with col1:
+    model = st.radio(
+        "Select Model",
+        ["1:1 Model", "1:2 Model"],
+        horizontal=True
+    )
+with col2:
+    name = st.text_input("Enter employee name (IC or Director)")
 
-  await sleep(3000);
+st.markdown("---")
 
-  try {
-    await proceedAfterAddToCart();
-    results.push("Proceed to Checkout");
-  } catch (e) {
-    results.push(`Proceed to Checkout failed: ${e.message}`);
-  }
+# ---------- Helpers ----------
+def merge_updates(results: pd.DataFrame, model_name: str) -> pd.DataFrame:
+    updates = load_updates()
+    updates_model = updates[updates["model"] == model_name].copy()
+    if updates_model.empty:
+        results["Comments"] = ""
+        results["Status"] = ""
+        return results
 
-  return results;
-}
+    results = results.merge(
+        updates_model[["row_key", "status", "comments"]],
+        on="row_key",
+        how="left",
+    )
+    results["Comments"] = results["comments"].fillna("")
+    results["Status"] = results["status"].fillna("")
+    results = results.drop(columns=["status", "comments"], errors="ignore")
+    return results
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message?.type !== "FILL_BLOOMBERG_FORM") return;
+def add_edit_columns_11(results: pd.DataFrame) -> pd.DataFrame:
+    results = results.copy()
+    results["row_key"] = (
+        results["Director Name"].astype(str) + " | " +
+        results["IC Name"].astype(str)
+    )
+    return merge_updates(results, "1:1")
 
-  (async () => {
-    try {
-      const results = await fillBloombergForm();
-      const failures = results.filter(r => r.includes("failed:"));
+def add_edit_columns_12(results: pd.DataFrame) -> pd.DataFrame:
+    results = results.copy()
+    results["row_key"] = (
+        results["Director Name"].astype(str) + " | " +
+        results["IC1 Name"].astype(str) + " | " +
+        results["IC2 Name"].astype(str)
+    )
+    return merge_updates(results, "1:2")
 
-      if (failures.length) {
-        sendResponse({
-          ok: false,
-          message: `Completed with issues. ${failures.join(" | ")}`
-        });
-      } else {
-        sendResponse({
-          ok: true,
-          message: "Bloomberg form filled, added to cart, and proceeded to checkout."
-        });
-      }
-    } catch (err) {
-      sendResponse({
-        ok: false,
-        message: `Unexpected error: ${err.message}`
-      });
-    }
-  })();
+def metric_box(label: str, value: int):
+    st.markdown(
+        f"""
+        <div class="metric-card">
+            <div class="metric-label">{label}</div>
+            <div class="metric-value">{value}</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-  return true;
-});
+def show_progress_dashboard_11():
+    base = df_11.copy()
+    base["row_key"] = (
+        base["Director Name"].astype(str) + " | " +
+        base["IC Name"].astype(str)
+    )
+    base = merge_updates(base, "1:1")
+    statuses = base["Status"].fillna("")
+
+    c1, c2, c3, c4, c5 = st.columns(5)
+    with c1:
+        metric_box("Total Meetings", len(base))
+    with c2:
+        metric_box("Scheduled", int((statuses == "Scheduled").sum()))
+    with c3:
+        metric_box("Done", int((statuses == "Done").sum()))
+    with c4:
+        metric_box("Cancelled", int((statuses == "Cancelled").sum()))
+    with c5:
+        metric_box("Blank", int((statuses == "").sum()))
+
+def show_progress_dashboard_12():
+    base = df_12.copy()
+    base["row_key"] = (
+        base["Director Name"].astype(str) + " | " +
+        base["IC1 Name"].astype(str) + " | " +
+        base["IC2 Name"].astype(str)
+    )
+    base = merge_updates(base, "1:2")
+    statuses = base["Status"].fillna("")
+
+    c1, c2, c3, c4, c5 = st.columns(5)
+    with c1:
+        metric_box("Total Meetings", len(base))
+    with c2:
+        metric_box("Scheduled", int((statuses == "Scheduled").sum()))
+    with c3:
+        metric_box("Done", int((statuses == "Done").sum()))
+    with c4:
+        metric_box("Cancelled", int((statuses == "Cancelled").sum()))
+    with c5:
+        metric_box("Blank", int((statuses == "").sum()))
+
+st.subheader("Progress Dashboard")
+if model == "1:1 Model":
+    show_progress_dashboard_11()
+else:
+    show_progress_dashboard_12()
+
+st.markdown("---")
+st.subheader("Pairing Results")
+
+# ---------- Results ----------
+if name:
+    if model == "1:1 Model":
+        results = df_11[
+            df_11["IC Name"].astype(str).str.contains(name, case=False, na=False)
+            | df_11["Director Name"].astype(str).str.contains(name, case=False, na=False)
+        ].copy()
+
+        if results.empty:
+            st.warning("No matching mapping found.")
+        else:
+            results = add_edit_columns_11(results)
+
+            display_cols = [
+                "Director Name",
+                "Director Title",
+                "Director Team",
+                "IC Name",
+                "IC Title",
+                "IC Team",
+                "Comments",
+                "Status",
+            ]
+
+            edited = st.data_editor(
+                results[display_cols + ["row_key"]],
+                hide_index=True,
+                use_container_width=True,
+                disabled=[
+                    "Director Name",
+                    "Director Title",
+                    "Director Team",
+                    "IC Name",
+                    "IC Title",
+                    "IC Team",
+                    "row_key",
+                ],
+                column_config={
+                    "Comments": st.column_config.TextColumn("Comments"),
+                    "Status": st.column_config.SelectboxColumn(
+                        "Status",
+                        options=STATUS_OPTIONS,
+                        required=False,
+                    ),
+                    "row_key": None,
+                },
+                key="editor_11",
+            )
+
+            if st.button("Save 1:1 updates"):
+                upsert_updates("1:1", edited)
+                st.success("Saved.")
+                st.rerun()
+
+            export_df = edited.drop(columns=["row_key"])
+            st.download_button(
+                "Download current 1:1 results as CSV",
+                export_df.to_csv(index=False).encode("utf-8"),
+                file_name="skip_level_pairings_1_1.csv",
+                mime="text/csv",
+            )
+
+    else:
+        results = df_12[
+            df_12["IC1 Name"].astype(str).str.contains(name, case=False, na=False)
+            | df_12["IC2 Name"].astype(str).str.contains(name, case=False, na=False)
+            | df_12["Director Name"].astype(str).str.contains(name, case=False, na=False)
+        ].copy()
+
+        if results.empty:
+            st.warning("No matching mapping found.")
+        else:
+            results = add_edit_columns_12(results)
+
+            display_cols = [
+                "Director Name",
+                "Director Title",
+                "Director Team",
+                "IC1 Name",
+                "IC1 Title",
+                "IC1 Team",
+                "IC2 Name",
+                "IC2 Title",
+                "IC2 Team",
+                "Comments",
+                "Status",
+            ]
+
+            edited = st.data_editor(
+                results[display_cols + ["row_key"]],
+                hide_index=True,
+                use_container_width=True,
+                disabled=[
+                    "Director Name",
+                    "Director Title",
+                    "Director Team",
+                    "IC1 Name",
+                    "IC1 Title",
+                    "IC1 Team",
+                    "IC2 Name",
+                    "IC2 Title",
+                    "IC2 Team",
+                    "row_key",
+                ],
+                column_config={
+                    "Comments": st.column_config.TextColumn("Comments"),
+                    "Status": st.column_config.SelectboxColumn(
+                        "Status",
+                        options=STATUS_OPTIONS,
+                        required=False,
+                    ),
+                    "row_key": None,
+                },
+                key="editor_12",
+            )
+
+            if st.button("Save 1:2 updates"):
+                upsert_updates("1:2", edited)
+                st.success("Saved.")
+                st.rerun()
+
+            export_df = edited.drop(columns=["row_key"])
+            st.download_button(
+                "Download current 1:2 results as CSV",
+                export_df.to_csv(index=False).encode("utf-8"),
+                file_name="skip_level_pairings_1_2.csv",
+                mime="text/csv",
+            )
+else:
+    st.info("Search for an employee name to view their pairing details.")
